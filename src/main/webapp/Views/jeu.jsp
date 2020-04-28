@@ -18,7 +18,7 @@
             <form>
               <div class="col d-flex justify-content-between">
                 <label>Joueur :</label>
-                <input type="text" placeholder="Nom du joueur" id="playerName" style="width: 150px"/>
+                <div class="mb-0 h3"><%= session.getAttribute("identifiant")%></div>
                 </div>
                 <br/>
                 <div class="col d-flex justify-content-between">

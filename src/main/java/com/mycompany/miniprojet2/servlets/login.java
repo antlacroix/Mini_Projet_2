@@ -101,7 +101,7 @@ public class login extends HttpServlet {
         }
         
         if(userDto != null){
-            response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+            response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
             
             HttpSession session = request.getSession();
             session.setAttribute("nom", userDto.getNom());
