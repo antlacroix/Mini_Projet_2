@@ -1,0 +1,65 @@
+.cardcontainer{
+   display:flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#Acceuil{
+   width: 400px;
+}
+
+#Gameover{
+   width: 500px;
+   height: 200px;
+}
+
+#Score{
+   width: 600px;
+}
+
+td img{
+   width: 100px;
+   height: 100px;
+}
+
+.draggable{
+   height: 100px;
+   width: 100px;
+
+}
+
+.dropPlace{
+   height: 100px;
+   width: 100px;
+   border: solid gray 1px;
+}
+img{
+   height: 100px;
+   width: 100px;
+}
+
+#tableL,
+#tableR{
+   border: solid black 2px;
+   margin-left: 5px;
+   margin-right: 5px;
+}
+
+.leftMargin{
+   padding: 10px;
+}
+
+#cc2{
+   z-index: 10;
+}
+
+#timedOut{
+   z-index: 1000;
+   border: solid black 2px;
+   position: fixed;
+   left: calc(50vw - 200px);
+   top: calc(50vh - 75px);
+   height: 150px;
+   width: 400px;
+}
+
