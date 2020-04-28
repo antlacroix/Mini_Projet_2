@@ -97,7 +97,7 @@ public class login extends HttpServlet {
         try {
             userDto = userDao.GetUser(login, password);
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         if(userDto != null){

@@ -25,7 +25,7 @@ public class Db_Connect {
     
     public Connection OpenConnect(){
        
-        this.url = "jdbc:mysql://localhost:3306/db_miniprojetii_web?useUnicode=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        this.url = "jdbc:mysql://localhost:3306/db_miniprojetii_web.users?useUnicode=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         this.user = "root";
         this.pass = "Boston12a";
         
