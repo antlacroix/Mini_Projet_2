@@ -77,8 +77,8 @@
 
             </div>
             <br />
-            <div class="leftMargin">
-                <button id="btn_jeu_stop" class="btn btn-danger myButton" type="reset" style="width: 8em">Abondonner</button>
+            <form class="leftMargin" method="POST" action="${pageContext.request.contextPath}/forfeit">
+                <button id="btn_jeu_stop" class="btn btn-danger myButton" type="submit" style="width: 8em">Abondonner</button>
             </div>
             <br />
         </div>
@@ -90,14 +90,14 @@
             <div class="d-flex justify-content-around">
                 <h1 style="display: inline;"><i class="fa fa-hourglass-end"></i><b>Game Over!</b></h1>
             </div>
-            <div class="d-flex justify-content-around">
+            <form method="POST" action="${pageContext.request.contextPath}/forfeit">
                 <div>
-                  <button id="timedOut_Menu" class="btn btn-danger myButton" type="button" style="width: 8em">Menu</button>
+                  <button id="timedOut_Menu" class="btn btn-danger myButton" type="submit" style="width: 8em">Abandonner</button>
                 </div>
                 <div>
                   <button id="timedOut_Reset" class="btn btn-success myButton" type="button" style="width: 8em">Rejouer</button>
                 </div>
-            </div>
+            </form>
         </div>
         
     </div>

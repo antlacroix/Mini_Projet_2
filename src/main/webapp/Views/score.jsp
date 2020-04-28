@@ -36,7 +36,9 @@
                     </tbody>
                 </table>
                 <br>
-                <button id="btn_score_main" class="btn btn-danger myButton">Retour</button>
+                <form method="POST" action="${pageContext.request.contextPath}/BackToGame">
+                    <button id="btn_score_main" type="submit" class="btn btn-danger myButton">Retour</button>
+                </form>
             </div>
             <br />
         </div>

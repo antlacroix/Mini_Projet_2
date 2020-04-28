@@ -43,7 +43,7 @@ class Puzzle{
 
             case "Moyen":
                 this.completPuzzle = puzzleNbr + ".jpg"; 
-                this.pieceFolder = "/WebMiniProjet2/asset/images/Puzzle_Image_Game_Dataset/img" + puzzleNbr + "/4x4/";
+                this.pieceFolder = "/WebMiniProjet2/assets/images/Puzzle_Image_Game_Dataset/img" + puzzleNbr + "/4x4/";
                 this.puzzleTable = [];
                 for (let i = 0; i < 16; i++) {
 
@@ -61,7 +61,7 @@ class Puzzle{
 
             case "Difficile":
                 this.completPuzzle = puzzleNbr + ".jpg"; 
-                this.pieceFolder = "/WebMiniProjet2/asset/images/Puzzle_Image_Game_Dataset/img" + puzzleNbr + "/5x5/";
+                this.pieceFolder = "/WebMiniProjet2/assets/images/Puzzle_Image_Game_Dataset/img" + puzzleNbr + "/5x5/";
                 this.puzzleTable = [];
                 for (let i = 0; i < 25; i++) {
 
@@ -116,7 +116,6 @@ class Score{
 function ShowNewPlayer(){
     $("#cc1").show();
     $("#cc2").hide();
-    $("#cc3").hide();
     $("#cc4").hide();
     $("#cc5").hide();
 }
@@ -124,21 +123,6 @@ function ShowGame(playerName){
     $("#cc1").hide();
     $("#cc2").show();
     $("#titlePlayerName").text(playerName);
-    $("#cc3").hide();
-    $("#cc4").hide();
-    $("#cc5").hide();
-}
-function ShowScore(){
-    $("#cc1").hide();
-    $("#cc2").hide();
-    $("#cc3").show();
-    $("#cc4").hide();
-    $("#cc5").hide();
-}
-function ShowGameOver(){
-    $("#cc1").hide();
-    $("#cc2").hide();
-    $("#cc3").show();
     $("#cc4").hide();
     $("#cc5").hide();
 }
