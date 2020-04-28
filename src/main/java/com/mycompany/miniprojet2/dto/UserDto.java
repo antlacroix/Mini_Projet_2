@@ -27,11 +27,11 @@ public class UserDto {
         this._prenom = _prenom;
     }
 
-    public int getDdn() {
+    public String getDdn() {
         return _ddn;
     }
 
-    public void setDdn(int _ddn) {
+    public void setDdn(String _ddn) {
         this._ddn = _ddn;
     }
 
@@ -61,7 +61,7 @@ public class UserDto {
     
     private String _nom;
     private String _prenom;
-    private int _ddn;
+    private String _ddn;
     private String _identifiant;
     private String _email;
     private String _mdp;
@@ -70,7 +70,7 @@ public class UserDto {
         
     }
     
-    public UserDto(String nom, String prenom, int ddn, String identifiant, String email, String mdp){
+    public UserDto(String nom, String prenom, String ddn, String identifiant, String email, String mdp){
         this._nom = nom;
         this._prenom = prenom;
         this._ddn = ddn;

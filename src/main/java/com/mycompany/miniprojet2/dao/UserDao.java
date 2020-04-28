@@ -49,7 +49,7 @@ public class UserDao {
 
                     user.setNom(rs.getString(2));
                     user.setPrenom(rs.getString(3));
-                    user.setDdn(rs.getInt(4));
+                    user.setDdn(rs.getString(4));
                     user.setIdentifiant(rs.getString(5));
                     user.setEmail(rs.getString(6));
                     user.setMdp(rs.getString(7));

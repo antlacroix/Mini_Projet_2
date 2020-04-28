@@ -13,7 +13,7 @@
         <h5 class="card-header"><i class="fa fa-user fa-lg"></i> Connexion</h5>
         <div class="card-body">
 
-            <form method="POST" action="${pageContext.request.contextPath}/Connecter" >
+            <form method="POST" action="${pageContext.request.contextPath}/login" >
                 <div class="form-group row">
                     <div class="col">
                         <label>Identifiant :</label>
