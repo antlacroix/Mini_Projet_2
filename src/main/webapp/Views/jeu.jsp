@@ -84,59 +84,6 @@
         </div>
     </div>
 
-    <!--ecran de score-->
-    <div id="cc3" class="cardcontainer">
-        <div id="Score" class="card">
-            <h5 class="card-header"><i class="fa fa-book"></i> Scores </h5>
-            <br />
-            <div class="leftMargin">
-                <h6> Mode Normal </h6>
-                <table  border="3" width="50%">
-                    <tbody id="tbnormal">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Joueur</th>
-                            <th scope="col">Difficulté</th>
-                            <th scope="col">Temps écoulé</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br />
-            <div class="leftMargin">
-                <h6> Mode contre la montre </h6>
-                <table border="3" width="50%">
-                    <tbody id="tbTimed">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Joueur</th>
-                            <th scope="col">Difficulté</th>
-                            <th scope="col">Temps écoulé</th>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <button id="btn_score_main" class="btn btn-danger myButton">Retour</button>
-            </div>
-            <br />
-        </div>
-    </div>
-
-    <!--ecran de fin de partie-->
-    <div id="cc4" class="cardcontainer">
-        <div id="Gameover" class="card">
-            <h1><i class="fa fa-user"></i>Game Over !</h1>
-            <div class="col d-flex justify-content-between">
-                <div class="col myButton">
-                    <button class="btn btn-danger myButton" type="reset" style="width: 8em">Menu</button>
-                </div>
-                <div class="col myButton">
-                    <button id="beggin" type="button" class="btn btn-success myButton" style="width: 8em">Rejouer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Game Over screen -->
     <div id="cc5" class="cardcontainer">
         <div id="timedOut" class="card d-flex flex-column justify-content-around">
