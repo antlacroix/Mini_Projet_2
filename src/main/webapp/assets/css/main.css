@@ -1,7 +1,16 @@
+#nav-div{
+    width: 100%
+}
+
 .cardcontainer{
+   height: 100vh;
    display:flex;
    justify-content: center;
    align-items: center;
+}
+
+body, #container{
+    height: 100vh;
 }
 
 #Acceuil{
