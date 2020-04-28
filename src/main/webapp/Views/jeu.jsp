@@ -12,7 +12,9 @@
             
             <h5 class="card-header">
                 <i class="fa fa-book"></i> Nouvelle Partie
-                <button id=btn_np_score class="btn btn-outline-success my-2 my-sm-0">Score</button>
+                <form method="POST" action="${pageContext.request.contextPath}/forfeit">
+                    <button id=btn_np_score stype="submit" class="btn btn-outline-success my-2 my-sm-0">Score</button>
+                </form>
             </h5>
             <br/>
             <form>
