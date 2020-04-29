@@ -67,12 +67,21 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
        // processRequest(request, response);
        
-        HttpSession session = request.getSession();
+            HttpSession session = request.getSession();
         
-        if(session.getAttribute("identifiant") == null)
-            response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
-        else
-            response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
+            String bouttonRetour = request.getParameter("Retour");
+            session.setAttribute("back",bouttonRetour);
+       
+            if(session.getAttribute("back") != null){
+                session.setAttribute("identifiant", null); 
+                response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+                }
+            else{
+                if(session.getAttribute("identifiant") == null)
+                    response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
+                else
+                    response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
+                }
     }
 
     /**
@@ -88,6 +97,19 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
        // processRequest(request, response);
        
+        HttpSession session = request.getSession();
+        String bouttonRetour = request.getParameter("Retour");
+            session.setAttribute("back",bouttonRetour);
+       
+            if(session.getAttribute("back") != null){
+                session.setAttribute("identifiant", null); 
+                response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+                }
+            else{
+       
+       
+       
+       
         String login = request.getParameter("data_login");
         String password = request.getParameter("data_password");        
         
@@ -102,8 +124,7 @@ public class login extends HttpServlet {
         
         if(userDto != null){
             response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
-            
-            HttpSession session = request.getSession();
+    
             session.setAttribute("nom", userDto.getNom());
             session.setAttribute("prenom", userDto.getPrenom());
             session.setAttribute("ddn", userDto.getDdn()); 
@@ -113,6 +134,7 @@ public class login extends HttpServlet {
         else{
             request.setAttribute("erreur", "true");
             this.getServletContext().getRequestDispatcher("/Views/login.jsp").forward(request, response);
+        }
         }
     }
 

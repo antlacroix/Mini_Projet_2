@@ -5,12 +5,8 @@
  */
 package com.mycompany.miniprojet2.servlets;
 
-import com.mycompany.miniprojet2.dao.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Maison
  */
-public class inscription extends HttpServlet {
+public class home extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +36,10 @@ public class inscription extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet inscription</title>");            
+            out.println("<title>Servlet home</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet inscription at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet home at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,23 +57,16 @@ public class inscription extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      //  processRequest(request, response);
-      
-         HttpSession session = request.getSession();
+        //processRequest(request, response);
         
-            String bouttonRetour = request.getParameter("Retour");
-            session.setAttribute("back",bouttonRetour);
+            String bouttonInscrire = request.getParameter("Inscrire");
+            HttpSession session=request.getSession();
+            session.setAttribute("inscrit",bouttonInscrire);
        
-            if(session.getAttribute("back") != null){
-                session.setAttribute("identifiant", null); 
-                response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
-                }
-            else{
-                if(session.getAttribute("identifiant") == null)
-                    response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
-                else
-                    response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
-                }
+            if(session.getAttribute("inscrit") != null)
+                response.sendRedirect(request.getContextPath() + "/Views/inscription.jsp");
+            else
+                response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
     }
 
     /**
@@ -93,46 +82,15 @@ public class inscription extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-        HttpSession session = request.getSession();
-        String bouttonRetour = request.getParameter("Retour");
-            session.setAttribute("back",bouttonRetour);
+            String bouttonInscrire = request.getParameter("Inscrire");
+            HttpSession session=request.getSession();
+            session.setAttribute("inscrit",bouttonInscrire);
        
-            if(session.getAttribute("back") != null){
-                session.setAttribute("identifiant", null); 
-                response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
-                }
-            else{
-        
-        
-        
- 
-        String nom = request.getParameter("new_user_data_nom");
-        String prenom = request.getParameter("new_user_data_prenom");
-        String ddn = request.getParameter("new_user_data_ddn");
-        String identifiant = request.getParameter("new_user_data_identifiant");
-        String email = request.getParameter("new_user_data_email");
-        String mdp = request.getParameter("new_user_data_password");
-
-        session.setAttribute("nom", nom);
-        session.setAttribute("prenom", prenom);
-        session.setAttribute("ddn", ddn); 
-        session.setAttribute("identifiant", identifiant);   
-        session.setAttribute("email", email); 
-        
-        UserDao userDao = new UserDao();        
-        
-        try {
-            userDao.CreateUser(nom, prenom, ddn, identifiant, email, mdp);
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }    
-        
-        
-        request.setAttribute("erreur", "true");
-        this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
-        }
+            if(session.getAttribute("inscrit") != null)
+                response.sendRedirect(request.getContextPath() + "/Views/inscription.jsp");
+            else
+                response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
     }
-
 
     /**
      * Returns a short description of the servlet.
