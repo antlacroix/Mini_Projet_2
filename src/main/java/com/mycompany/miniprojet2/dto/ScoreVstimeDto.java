@@ -5,7 +5,9 @@ public class ScoreVstimeDto {
     //varriable
     private int idscore;
     private int initial_time;
+    private String temp_init;
     private int finale_time;
+    private String temp_fin;
     private String joueur;
     private String difficulte;
 
@@ -25,6 +27,15 @@ public class ScoreVstimeDto {
     public void setDifficulte(String difficulte) {
         this.difficulte = difficulte;
     }
+
+    public void setTemp_init(String temp_init) {
+        this.temp_init = temp_init;
+    }
+
+    public void setTemp_fin(String temp_fin) {
+        this.temp_fin = temp_fin;
+    }
+    
     
     //get
     public int getIdscore() {
@@ -42,14 +53,25 @@ public class ScoreVstimeDto {
     public String getDifficulte() {
         return difficulte;
     }
+
+    public String getTemp_init() {
+        return temp_init;
+    }
+
+    public String getTemp_fin() {
+        return temp_fin;
+    }
+    
     
     //constructeur
     public ScoreVstimeDto(){}
     
-    public ScoreVstimeDto(int id, int initialTime, int finalTime, String joueur, String difficulte){
+    public ScoreVstimeDto(int id, String joueur, String difficulte, int initialTime, int finalTime){
         this.idscore = id;
         this.initial_time = initialTime;
+        this.temp_init = "" + String.format("%02d", initialTime/60) + " : " + String.format("%02d", initialTime%60);
         this.finale_time = finalTime;
+        this.temp_fin = "" + String.format("%02d", finalTime/60) + " : " + String.format("%02d", finalTime%60);
         this.joueur = joueur;
         this.difficulte = difficulte;
     }

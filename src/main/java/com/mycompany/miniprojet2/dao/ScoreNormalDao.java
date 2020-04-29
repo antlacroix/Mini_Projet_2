@@ -22,6 +22,7 @@ public class ScoreNormalDao {
     private ResultSet rs;
     private List<ScoreNormalDto> scores;
     
+    //constructeur
     public ScoreNormalDao(){
         this.db_connect = new Db_Connect();
         this.connection = null;
@@ -30,6 +31,8 @@ public class ScoreNormalDao {
         this.scores = new ArrayList<ScoreNormalDto>();
     }
     
+    //utilise la String "SQL_GetScore" afin de
+    //retourner une list de ScoreNormal
     public List<ScoreNormalDto> GetScore() throws SQLException{
         
         try{
@@ -41,15 +44,18 @@ public class ScoreNormalDao {
             
             if(this.rs != null){
                 while(this.rs.next()){
-                    ScoreNormalDto score = new ScoreNormalDto();
                     
-                    score.setId(rs.getInt(1));
-                    score.setJoueur(rs.getString(2));
-                    score.setDifficulte(rs.getString(3));
-                    score.setTime(rs.getInt(4));
+                    ScoreNormalDto score = new ScoreNormalDto(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4)
+                    );
                     
                     scores.add(score);
                 }
+                
+                return scores;
             }
         } catch (SQLException ex){
             Logger.getLogger(ScoreNormalDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,6 +71,9 @@ public class ScoreNormalDao {
         return null;
     }
     
+    //utilise la String "SQL_NewScore" afin de
+    //d'ajouter un nouvel enregistrement dans la BD
+    //dans la table scores_normal
     public void CreateScore(String identifiant, String difficulte, int time) throws SQLException{
         try{
             this.connection = this.db_connect.OpenConnect();

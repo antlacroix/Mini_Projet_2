@@ -2,6 +2,7 @@ package com.mycompany.miniprojet2.dao;
 
 import com.mycompany.miniprojet2.dto.ScoreVstimeDto;
 import com.mycompany.miniprojet2.utils.Db_Connect;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +31,8 @@ public class ScoreVstimeDao {
         this.scores = new ArrayList<ScoreVstimeDto>();
     }
     
-    //
+    //utilise la String "SQL_GetScore" afin de
+    //retourner une list de ScoreVstime
     public List<ScoreVstimeDto> GetScore() throws SQLException{
         
         try{
@@ -38,20 +40,22 @@ public class ScoreVstimeDao {
             this.ps = this.connection.prepareStatement(this.SQL_GetScore);  
             this.rs = this.ps.executeQuery();
             
-            
-            
             if(this.rs != null){
                 while(this.rs.next()){
-                    ScoreVstimeDto score = new ScoreVstimeDto();
-                    
-                    score.setIdscore(rs.getInt(1));
-                    score.setJoueur(rs.getString(2));
-                    score.setDifficulte(rs.getString(3));
-                    score.setInitial_time(rs.getInt(4));
-                    score.setFinale_time(rs.getInt(5));
+
+                    ScoreVstimeDto score = new ScoreVstimeDto(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5)
+                    );
                     
                     scores.add(score);
                 }
+                
+                return scores; 
+                //ScoreVstimeDto score = scores.toArray()[0];
             }
         } catch (SQLException ex){
             Logger.getLogger(ScoreNormalDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,7 +70,10 @@ public class ScoreVstimeDao {
         
         return null;
     }
-    
+
+    //utilise la String "SQL_NewScore" afin de
+    //d'ajouter un nouvel enregistrement dans la BD
+    //dans la table scores_vstime
     public void CreateScore(String identifiant, String difficulte, int initialTime, int finalTime) throws SQLException{
         try{
             this.connection = this.db_connect.OpenConnect();
