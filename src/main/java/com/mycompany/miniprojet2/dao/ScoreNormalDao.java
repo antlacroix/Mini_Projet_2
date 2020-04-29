@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 
 public class ScoreNormalDao {
     
-    private String SQL_GetUser = "SELECT * FROM scores_normal";
+    private static String SQL_GetScore = "SELECT * FROM scores_normal";
+    private static String SQL_NewScore = "INSERT INTO scores_normal (joueur, difficulte, time_spent) VALUES (?, ?, ?);";
     
     private Db_Connect db_connect;
     private Connection connection;
@@ -33,7 +34,7 @@ public class ScoreNormalDao {
         
         try{
             this.connection = this.db_connect.OpenConnect();
-            this.ps = this.connection.prepareStatement(this.SQL_GetUser);  
+            this.ps = this.connection.prepareStatement(this.SQL_GetScore);  
             this.rs = this.ps.executeQuery();
             
             
@@ -62,6 +63,21 @@ public class ScoreNormalDao {
         }
         
         return null;
+    }
+    
+    public void CreateScore(String identifiant, String difficulte, int time) throws SQLException{
+        try{
+            this.connection = this.db_connect.OpenConnect();
+            this.ps = this.connection.prepareStatement(SQL_NewScore);
+            this.ps.setString(1, identifiant);
+            this.ps.setString(2, difficulte);
+            this.ps.setInt(3, time);
+            this.ps.executeUpdate();
+        }catch (SQLException ex){
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            
+        }
     }
 }
 

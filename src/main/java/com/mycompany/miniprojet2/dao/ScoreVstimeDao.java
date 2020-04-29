@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 
 public class ScoreVstimeDao {
     
-    private String SQL_GetUser = "SELECT * FROM scores_vstime";
+    private static String SQL_GetScore = "SELECT * FROM scores_vstime";
+    private static String SQL_NewScore = "INSERT INTO scores_vstime (joueur, difficulte, initial_time, finale_time) VALUES (?, ?, ?, ?);";
     
     private Db_Connect db_connect;
     private Connection connection;
@@ -29,11 +30,12 @@ public class ScoreVstimeDao {
         this.scores = new ArrayList<ScoreVstimeDto>();
     }
     
+    //
     public List<ScoreVstimeDto> GetScore() throws SQLException{
         
         try{
             this.connection = this.db_connect.OpenConnect();
-            this.ps = this.connection.prepareStatement(this.SQL_GetUser);  
+            this.ps = this.connection.prepareStatement(this.SQL_GetScore);  
             this.rs = this.ps.executeQuery();
             
             
@@ -63,5 +65,21 @@ public class ScoreVstimeDao {
         }
         
         return null;
+    }
+    
+    public void CreateScore(String identifiant, String difficulte, int initialTime, int finalTime) throws SQLException{
+        try{
+            this.connection = this.db_connect.OpenConnect();
+            this.ps = this.connection.prepareStatement(SQL_NewScore);
+            this.ps.setString(1, identifiant);
+            this.ps.setString(2, difficulte);
+            this.ps.setInt(3, initialTime);
+            this.ps.setInt(4, finalTime);
+            this.ps.executeUpdate();
+        }catch (SQLException ex){
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            
+        }
     }
 }
