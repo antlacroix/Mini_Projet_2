@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.miniprojet2.utils;
 
 import static java.lang.System.out;
@@ -12,10 +7,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Maison
- */
 public class Db_Connect {
     
     private Connection connection = null;
@@ -27,7 +18,7 @@ public class Db_Connect {
        
         this.url = "jdbc:mysql://localhost:3306/db_miniprojetii_web?useUnicode=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         this.user = "root";
-        this.pass = "Boston12a";
+        this.pass = "014Laca3016";
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
