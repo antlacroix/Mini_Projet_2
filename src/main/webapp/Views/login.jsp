@@ -51,7 +51,7 @@
             
             <% 
                 if(session.getAttribute("identifiant") != null)
-                    response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+                    response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
             %>            
         </div>
     </div>

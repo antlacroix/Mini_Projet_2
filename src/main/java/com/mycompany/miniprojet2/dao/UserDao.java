@@ -20,6 +20,8 @@ import java.util.logging.Logger;
  */
 public class UserDao {
      private String SQL_GetUser = "SELECT * FROM users WHERE identifiant=? AND mdp=?";
+     private String SQL_UpdateUser = "UPDATE users SET nom=?, prenom=?, ddn=?, mdp=? WHERE username=?";
+     private String SQL_CreateUser = "INSERT INTO users(nom, prenom, ddn, identifiant, email, mdp) VALUES(?, ?, ?, ?, ?, ?)";
      
     private Db_Connect db_connect;
     private Connection connection;
@@ -69,5 +71,53 @@ public class UserDao {
         }
         
         return null;  
+    }
+     
+     public void UpdateUser(String nom, String prenom, String ddn, String identifiant, String mdp) throws SQLException{
+
+        try{
+            this.connection = this.db_connect.OpenConnect();
+            this.ps = this.connection.prepareStatement(SQL_UpdateUser);
+            this.ps.setString(1, nom);
+            this.ps.setString(2, prenom);
+            this.ps.setString(3, ddn);
+            this.ps.setString(5, mdp);
+            this.ps.executeUpdate();      
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                this.ps.close();
+                this.db_connect.CloseConnect();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+     
+     
+    public void CreateUser(String nom, String prenom, String ddn, String identifiant, String email, String mdp) throws SQLException{
+        
+        try{
+            this.connection = this.db_connect.OpenConnect();
+            this.ps = this.connection.prepareStatement(SQL_CreateUser);
+            this.ps.setString(1, nom);
+            this.ps.setString(2, prenom);
+            this.ps.setString(3, ddn);
+            this.ps.setString(4, identifiant);
+            this.ps.setString(5, email);
+            this.ps.setString(6, mdp);
+            this.ps.executeUpdate();   
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                this.ps.close();
+                this.db_connect.CloseConnect();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

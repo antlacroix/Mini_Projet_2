@@ -6,11 +6,8 @@
 package com.mycompany.miniprojet2.servlets;
 
 import com.mycompany.miniprojet2.dao.UserDao;
-import com.mycompany.miniprojet2.dto.UserDto;
-import com.mycompany.miniprojet2.utils.Db_Connect;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,12 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  *
  * @author Maison
  */
-public class login extends HttpServlet {
+public class inscription extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +40,10 @@ public class login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");            
+            out.println("<title>Servlet inscription</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet inscription at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,14 +61,14 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
-       
-        HttpSession session = request.getSession();
+      //  processRequest(request, response);
+      
+         HttpSession session = request.getSession();
         
         if(session.getAttribute("identifiant") == null)
             response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
         else
-            response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
+            response.sendRedirect(request.getContextPath() + "/Views/inscription.jsp");
     }
 
     /**
@@ -86,34 +82,25 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
-       
-        String login = request.getParameter("data_login");
-        String password = request.getParameter("data_password");        
+        //processRequest(request, response);
         
-        UserDto userDto = null;
+        String nom = request.getParameter("new_user_data_nom");
+        String prenom = request.getParameter("new_user_data_prenom");
+        String ddn = request.getParameter("new_user_data_ddn");
+        String identifiant = request.getParameter("new_user_data_identifiant");
+        String email = request.getParameter("new_user_data_email");
+        String mdp = request.getParameter("new_user_data_password");
+
         UserDao userDao = new UserDao();        
         
         try {
-            userDto = userDao.GetUser(login, password);
+            userDao.CreateUser(nom, prenom, ddn, identifiant, email, mdp);
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
         
-        if(userDto != null){
-            response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
-            
-            HttpSession session = request.getSession();
-            session.setAttribute("nom", userDto.getNom());
-            session.setAttribute("prenom", userDto.getPrenom());
-            session.setAttribute("ddn", userDto.getDdn()); 
-            session.setAttribute("identifiant", userDto.getIdentifiant());   
-            session.setAttribute("email", userDto.getEmail()); 
-        }
-        else{
-            request.setAttribute("erreur", "true");
-            this.getServletContext().getRequestDispatcher("/Views/login.jsp").forward(request, response);
-        }
+        request.setAttribute("msg2", "true");
+        this.getServletContext().getRequestDispatcher("/Views/jeu.jsp").forward(request, response);
     }
 
     /**

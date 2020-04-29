@@ -1,6 +1,6 @@
  <!-- ajoute le header pour le navigateur -->   
 <jsp:include page="header.jsp">
-    <jsp:param name="title" value="Se connecter"/>
+    <jsp:param name="title" value="Score"/>
 </jsp:include>
 
 
