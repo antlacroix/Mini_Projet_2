@@ -33,7 +33,7 @@
                 </div>
 
                 <div>
-                    <button class="btn btn-danger" type="reset"><i class="fa fa-trash fa-lg"></i> Retour</button>
+                    <button class="btn btn-danger" type="submit" value="back" name="Retour"><i class="fa fa-trash fa-lg"></i> Retour</button>
                     <button class="btn btn-success float-right" type="submit"><i class="fa fa-sign-in fa-lg"></i> Valider</button>
                 </div>
             </form> <br>
