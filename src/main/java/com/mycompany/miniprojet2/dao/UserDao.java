@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.miniprojet2.dao;
 
 import com.mycompany.miniprojet2.dto.UserDto;
@@ -14,14 +9,10 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Maison
- */
 public class UserDao {
-     private String SQL_GetUser = "SELECT * FROM users WHERE identifiant=? AND mdp=?";
-     private String SQL_UpdateUser = "UPDATE users SET nom=?, prenom=?, ddn=?, mdp=? WHERE username=?";
-     private String SQL_CreateUser = "INSERT INTO users(nom, prenom, ddn, identifiant, email, mdp) VALUES(?, ?, ?, ?, ?, ?)";
+    private static String SQL_GetUser = "SELECT * FROM users WHERE identifiant=? AND mdp=?";
+    private static String SQL_UpdateUser = "UPDATE users SET nom=?, prenom=?, ddn=?, mdp=? WHERE username=?";
+    private static String SQL_CreateUser = "INSERT INTO users(nom, prenom, ddn, identifiant, email, mdp) VALUES(?, ?, ?, ?, ?, ?)";
      
     private Db_Connect db_connect;
     private Connection connection;
