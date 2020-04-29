@@ -1,7 +1,6 @@
 package com.mycompany.miniprojet2.dao;
 
-import com.mycompany.miniprojet2.dto.ScoreDto;
-import com.mycompany.miniprojet2.dto.UserDto;
+import com.mycompany.miniprojet2.dto.ScoreNormalDto;
 import com.mycompany.miniprojet2.utils.Db_Connect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,25 +11,25 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ScoreDao {
+public class ScoreNormalDao {
     
-    private String SQL_GetUser = "SELECT * FROM scores";
+    private String SQL_GetUser = "SELECT * FROM scores_normal";
     
     private Db_Connect db_connect;
     private Connection connection;
     private PreparedStatement ps;
     private ResultSet rs;
-    private List<ScoreDto> scores;
+    private List<ScoreNormalDto> scores;
     
-    public ScoreDao(){
+    public ScoreNormalDao(){
         this.db_connect = new Db_Connect();
         this.connection = null;
         this.rs = null;
         this.ps = null;
-        this.scores = new ArrayList<ScoreDto>();
+        this.scores = new ArrayList<ScoreNormalDto>();
     }
     
-    public List<ScoreDto> GetScore() throws SQLException{
+    public List<ScoreNormalDto> GetScore() throws SQLException{
         
         try{
             this.connection = this.db_connect.OpenConnect();
@@ -41,18 +40,18 @@ public class ScoreDao {
             
             if(this.rs != null){
                 while(this.rs.next()){
-                    ScoreDto score = new ScoreDto();
+                    ScoreNormalDto score = new ScoreNormalDto();
                     
-                    score.setIdscore(rs.getInt(1));
+                    score.setId(rs.getInt(1));
                     score.setJoueur(rs.getString(2));
                     score.setDifficulte(rs.getString(3));
-                    score.setTemps(rs.getString(4));
+                    score.setTime(rs.getInt(4));
                     
                     scores.add(score);
                 }
             }
         } catch (SQLException ex){
-            Logger.getLogger(ScoreDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScoreNormalDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 this.rs.close();
