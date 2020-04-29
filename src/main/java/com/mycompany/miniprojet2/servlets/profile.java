@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Maison
  */
-public class modifie_profile extends HttpServlet {
+public class profile extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class modifie_profile extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet modifie_profile</title>");            
+            out.println("<title>Servlet profile</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet modifie_profile at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet profile at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,14 +61,23 @@ public class modifie_profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+       // processRequest(request, response);
         
         HttpSession session = request.getSession();
         
-        if(session.getAttribute("identifiant") == null)
-            response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
-        else
-            response.sendRedirect(request.getContextPath() + "/Views/modifie_profile.jsp");
+        String bouttonRetour = request.getParameter("Retour");
+        session.setAttribute("back",bouttonRetour);
+       
+            if(session.getAttribute("back") != null){
+                response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
+                session.setAttribute("back", null); 
+                }
+            else{
+//                if(session.getAttribute("identifiant") == null)
+//                    response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
+//                else
+                    response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
+                }
     }
 
     /**
@@ -83,25 +92,37 @@ public class modifie_profile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        // processRequest(request, response);
+        
+        HttpSession session = request.getSession();
+       
+            String bouttonRetour2 = request.getParameter("Retour");
+            session.setAttribute("back",bouttonRetour2);
+       
+            if(session.getAttribute("back") != null){
+                response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
+                session.setAttribute("back", null);
+                }
+            else{
        
         String nom = request.getParameter("new_data_nom");
         String prenom = request.getParameter("new_data_prenom");
         String ddn = request.getParameter("new_data_ddn");
-        String password = request.getParameter("new_data_password");
+        String mdp = request.getParameter("new_data_password");
         
+        session.setAttribute("nom", nom);
+        session.setAttribute("prenom", prenom);
+        session.setAttribute("ddn", ddn); 
+       
         
         UserDao userDao = new UserDao();
-        HttpSession session = request.getSession();  
         
         try {
-            userDao.UpdateUser(session.getAttribute("identifiant").toString(), nom, prenom, ddn, password);
+            userDao.UpdateUser(session.getAttribute("identifiant").toString(), nom, prenom, ddn, mdp);
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }      
-        
-        request.setAttribute("msg1", "true");
-        this.getServletContext().getRequestDispatcher("/Views/modifie_profile.jsp").forward(request, response);
-       
+        } 
+        this.getServletContext().getRequestDispatcher("/Views/jeu.jsp").forward(request, response);
+    }   	
     }
 
     /**

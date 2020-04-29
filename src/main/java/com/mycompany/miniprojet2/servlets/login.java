@@ -75,6 +75,7 @@ public class login extends HttpServlet {
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+                session.setAttribute("back", null); 
                 }
             else{
                 if(session.getAttribute("identifiant") == null)
@@ -104,6 +105,7 @@ public class login extends HttpServlet {
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+                session.setAttribute("back", null); 
                 }
             else{
        

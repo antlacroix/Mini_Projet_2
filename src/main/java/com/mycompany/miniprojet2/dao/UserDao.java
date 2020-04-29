@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class UserDao {
     private static String SQL_GetUser = "SELECT * FROM users WHERE identifiant=? AND mdp=?";
-    private static String SQL_UpdateUser = "UPDATE users SET nom=?, prenom=?, ddn=?, mdp=? WHERE username=?";
+    private static String SQL_UpdateUser = "UPDATE users SET nom=?, prenom=?, ddn=?, mdp=? WHERE identifiant=?";
     private static String SQL_CreateUser = "INSERT INTO users(nom, prenom, ddn, identifiant, email, mdp) VALUES(?, ?, ?, ?, ?, ?)";
      
     private Db_Connect db_connect;
@@ -64,7 +64,7 @@ public class UserDao {
         return null;  
     }
      
-     public void UpdateUser(String nom, String prenom, String ddn, String identifiant, String mdp) throws SQLException{
+     public void UpdateUser(String identifiant, String nom, String prenom, String ddn, String mdp) throws SQLException{
 
         try{
             this.connection = this.db_connect.OpenConnect();
@@ -72,7 +72,8 @@ public class UserDao {
             this.ps.setString(1, nom);
             this.ps.setString(2, prenom);
             this.ps.setString(3, ddn);
-            this.ps.setString(5, mdp);
+            this.ps.setString(4, mdp);
+            this.ps.setString(5, identifiant);
             this.ps.executeUpdate();      
             
         } catch (SQLException ex) {

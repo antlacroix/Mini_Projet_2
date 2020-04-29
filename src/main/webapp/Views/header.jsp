@@ -29,13 +29,13 @@
                 <div class="collapse navbar-collapse d-flex justify-content-center">
                     <ul class="navbar-nav">
                         <li class="nav-item mx-5 active">
-                            <a class="nav-link mb-0 h3" href="">  Jeu  </a>
+                            <a class="nav-link mb-0 h3" href="${pageContext.request.contextPath}/Views/jeu.jsp">  Jeu  </a>
                         </li>
                         <li class="nav-item mx-5">
-                            <a class="nav-link mb-0 h3" href="">  Profile  </a>
+                            <a class="nav-link mb-0 h3" href="${pageContext.request.contextPath}/Views/profile.jsp">  Profile  </a>
                         </li>
                         <li class="nav-item mx-5">
-                            <a class="nav-link mb-0 h3" href="">  Score  </a>
+                            <a class="nav-link mb-0 h3" href="${pageContext.request.contextPath}/Views/score.jsp">  Score  </a>
                         </li>
                         <li class="nav-item mx-5">
                             <a class="nav-link mb-0 h3" href="">  Se déconnecter  </a>

@@ -71,6 +71,7 @@ public class inscription extends HttpServlet {
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+                session.setAttribute("back", null); 
                 }
             else{
                 if(session.getAttribute("identifiant") == null)
@@ -100,6 +101,7 @@ public class inscription extends HttpServlet {
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+                session.setAttribute("back", null); 
                 }
             else{
         
@@ -126,10 +128,7 @@ public class inscription extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }    
-        
-        
-        request.setAttribute("erreur", "true");
-        this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/Views/jeu.jsp").forward(request, response);
         }
     }
 
