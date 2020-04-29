@@ -13,7 +13,7 @@
       
         <div class="card-body">
 
-            <form method="POST" action="${pageContext.request.contextPath}/home" >
+            <form method="POST" action="${pageContext.request.contextPath}/login" >
                 
 
                 <div>
@@ -21,18 +21,7 @@
                     <button class="btn btn-danger" type="reset"><i class="fa fa-trash fa-lg"></i> S'incrire</button>
                 </div>
             </form> <br>
-            
-            <% if(request.getAttribute("erreur") == "true"){ %>
-            
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <b>Erreur :</b> L'identifiant ou le mot de passe est incorrect !
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>         
-            
-            <% } %>      
-            
+                   
             <% 
                 if(session.getAttribute("identifiant") != null)
                     response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");

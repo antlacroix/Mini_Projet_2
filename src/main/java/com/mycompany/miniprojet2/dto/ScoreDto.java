@@ -41,11 +41,11 @@ public class ScoreDto {
     }
     
     
-    public ScoreDao(int idscore, String joueur, String difficulte, String temps){
-        this._idscore = idscore;
-        this._joueur = joueur;
-        this._difficulte = difficulte;
-        this._temps = temps;
-    }
+ //   public ScoreDao(int idscore, String joueur, String difficulte, String temps){
+ //       this._idscore = idscore;
+ //       this._joueur = joueur;
+  //      this._difficulte = difficulte;
+  //      this._temps = temps;
+   // }
 }
 

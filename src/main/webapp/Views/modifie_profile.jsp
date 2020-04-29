@@ -42,7 +42,7 @@
                         <label>Identifiant :</label>
                     </div>
                     <div class="col">
-                      <div class="mb-0 h3"><%= session.getAttribute("identifiant")%></div>
+                      <div class="mb-0 h5"><%= session.getAttribute("identifiant")%></div>
                     </div>
                 </div>
                  <div class="form-group row">
@@ -50,7 +50,7 @@
                         <label>Adresse email :</label>
                     </div>
                     <div class="col">
-                        <div class="mb-0 h3"><%= session.getAttribute("email")%></div>
+                        <div class="mb-0 h5"><%= session.getAttribute("email")%></div>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -88,7 +88,7 @@
             
             <% 
                 if(session.getAttribute("identifiant") != null)
-                    response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
+                    response.sendRedirect(request.getContextPath() + "/Views/modifie_profile.jsp");
             %>            
         </div>
     </div>

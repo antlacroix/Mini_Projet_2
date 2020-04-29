@@ -42,7 +42,9 @@
                         <label>Identifiant :</label>
                     </div>
                     <div class="col">
-                      <output type="text" class="form-control" name="new_user_data_identifiant" placeholder="Entrez votre nom">
+                      <input type="text" class="form-control" name="new_user_data_identifiant" placeholder="">
+                      </div>
+                      <div>
                       <button class="btn btn-primary" type="sumit"><i class="fas fa-undo-alt"></i></button>
                     </div>
                 </div>
