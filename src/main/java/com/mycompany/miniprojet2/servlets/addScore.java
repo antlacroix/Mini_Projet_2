@@ -77,7 +77,7 @@ public class addScore extends HttpServlet {
             } catch(SQLException ex) {
                 Logger.getLogger(addScore.class.getName()).log(Level.SEVERE, null, ex);
             }   finally{
-                response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
+                response.sendRedirect(request.getContextPath() + "/Views/score.jsp");
             }      
         } else if (request.getParameter("scoreType").equals("normal")){
             
@@ -94,7 +94,7 @@ public class addScore extends HttpServlet {
             } catch(SQLException ex) {
                 Logger.getLogger(addScore.class.getName()).log(Level.SEVERE, null, ex);
             } finally{
-                response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
+                response.sendRedirect(request.getContextPath() + "/Views/score.jsp");
             }
         }else{
             response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
