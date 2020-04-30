@@ -13,8 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ScoreVstimeDao {
-    
-    private static String SQL_GetScore = "SELECT * FROM scores_vstime";
+    private static String SQL_GetScore = "SELECT * FROM scores_vstime ORDER BY FIELD(difficulte, 'Difficile','Moyen','Facile'), initial_time LIMIT 10";
     private static String SQL_NewScore = "INSERT INTO scores_vstime (joueur, difficulte, initial_time, finale_time) VALUES (?, ?, ?, ?);";
     
     private Db_Connect db_connect;

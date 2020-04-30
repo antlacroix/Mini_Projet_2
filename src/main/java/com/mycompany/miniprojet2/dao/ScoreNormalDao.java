@@ -2,6 +2,7 @@ package com.mycompany.miniprojet2.dao;
 
 import com.mycompany.miniprojet2.dto.ScoreNormalDto;
 import com.mycompany.miniprojet2.utils.Db_Connect;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
 
 public class ScoreNormalDao {
     
-    private static String SQL_GetScore = "SELECT * FROM scores_normal";
+    private static String SQL_GetScore = "SELECT * FROM scores_normal ORDER BY FIELD(difficulte, 'Difficile','Moyen','Facile'), time_spent LIMIT 10";
     private static String SQL_NewScore = "INSERT INTO scores_normal (joueur, difficulte, time_spent) VALUES (?, ?, ?);";
     
     private Db_Connect db_connect;
@@ -77,6 +78,9 @@ public class ScoreNormalDao {
     public void CreateScore(String identifiant, String difficulte, int time) throws SQLException{
         try{
             this.connection = this.db_connect.OpenConnect();
+            out.println(identifiant);
+            out.println(difficulte);
+            out.println(time);
             this.ps = this.connection.prepareStatement(SQL_NewScore);
             this.ps.setString(1, identifiant);
             this.ps.setString(2, difficulte);

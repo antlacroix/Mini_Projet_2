@@ -20,7 +20,7 @@
             <form>
               <div class="col d-flex justify-content-between">
                 <label>Joueur :</label>
-                <div class="mb-0 h3"><%= session.getAttribute("identifiant")%></div>
+                <label id="playerName" class="mb-0 h3" value="<%= session.getAttribute("identifiant")%>"><%= session.getAttribute("identifiant")%></label>
                 </div>
                 <br/>
                 <div class="col d-flex justify-content-between">
@@ -104,8 +104,30 @@
         
     </div>
     
-    
-    
+                
+           
+    <!-- s'affiche lorsque le joueur réussi une partie -->
+    <!-- plussieur chant sont caché et serve a retennir les info du score -->
+    <div id="cc6" class="cardcontainer">
+        <div id="finished" class="card d-flex flex-column justify-content-around">
+            <div class="d-flex justify-content-around">
+                <h1 style="display: inline;"><b>FELICITATION!!!!!</b></h1>
+            </div>
+            <form method="POST" action="${pageContext.request.contextPath}/addScore">
+                <div>
+                  <button id="timedOut_Reset" class="btn btn-success myButton" type="submit" style="width: 8em">Continuer</button>
+                </div>
+                <div style="display: none;">
+                    <input id="scoreType" type="text" class="form-control" name="scoreType">
+                    <input id="scoreDifficulte" type="text" class="form-control" name="scoreDifficulte">
+                    <input id="scoreTimeInit" type="text" class="form-control" name="scoreTimeInit">
+                    <input id="scoreTimeFinal" type="text" class="form-control" name="scoreTimeFinal">
+                </div>
+            </form>
+                
+        </div>
+        
+    </div>
     
 <!-- ajoute le footer pour le navigateur -->    
 <%@include file="footer.jsp"%>

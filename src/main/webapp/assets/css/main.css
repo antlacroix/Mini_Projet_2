@@ -62,7 +62,7 @@ img{
    z-index: 10;
 }
 
-#timedOut{
+#timedOut, #finished{
    z-index: 1000;
    border: solid black 2px;
    position: fixed;

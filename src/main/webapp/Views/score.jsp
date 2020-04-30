@@ -15,7 +15,7 @@
             <h5 class="card-header"><i class="fa fa-book"></i> Scores </h5>
             <br />
             <div class="leftMargin">
-                <h6> Mode Normal </h6>
+                <h6> Mode contre la montre </h6>
                 <table  border="3" width="100%">
                     <tbody id="tbnormal">
                         <tr>
@@ -44,7 +44,7 @@
             </div>
             <br />
             <div class="leftMargin">
-                <h6> Mode contre la montre </h6>
+                <h6> Mode Normal </h6>
                 <table border="3" width="100%">
                     <tbody id="tbTimed">
                         <tr>

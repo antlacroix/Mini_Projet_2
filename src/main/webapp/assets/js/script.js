@@ -17,6 +17,8 @@ class Puzzle{
         this.min = min;
 
         this.initailTime = (60 * parseInt(min)) + parseInt(sec);
+        $("#scoreTimeInit").val(this.initailTime);
+        $("#scoreDifficulte").val(difficulty);
 
         this.intervalId = null;
 
@@ -118,6 +120,7 @@ function ShowNewPlayer(){
     $("#cc2").hide();
     $("#cc4").hide();
     $("#cc5").hide();
+    $("#cc6").hide();
 }
 function ShowGame(playerName){
     $("#cc1").hide();
@@ -125,6 +128,7 @@ function ShowGame(playerName){
     $("#titlePlayerName").text(playerName);
     $("#cc4").hide();
     $("#cc5").hide();
+    $("#cc6").hide();
 }
 function ShowOption(){
     if($("#vstime").prop("checked") == true)
@@ -134,6 +138,9 @@ function ShowOption(){
 }
 function ShowTimedOut(){
     $("#cc5").show();
+}
+function GameWinned(){
+    $("#cc6").show();
 }
 //***************************************************************
 
@@ -334,21 +341,18 @@ $(document).ready(function(){
 
     //**********************************************************
 
-    //fonction des boutons de l'ecran nouvelle partie
-    $("#btn_np_score").on("click", function(){
-        ShowScore();
-    });
-    
+    //fonction des boutons de l'ecran nouvelle partie    
     $("#btn_np_start").on("click", function(){
-
         
         if($("#vstime").prop("checked") == true){
             myGame = new Game($("#difficulte").val(), $("#playerName").val(), "clocked", $("#minute").text(), $("#seconde").text());
             tempGame = new Game($("#difficulte").val(), $("#playerName").val(), "clocked", $("#minute").text(), $("#seconde").text());
+            $("#scoreType").val("clocked");
         }
         else if($("#vstime").prop("checked") == false){
             myGame = new Game($("#difficulte").val(), $("#playerName").val(), "normal");
             tempGame = new Game($("#difficulte").val(), $("#playerName").val(), "normal");
+            $("#scoreType").val("normal");
         }
 
         start(myGame)
@@ -394,18 +398,22 @@ $(document).ready(function(){
                         myGame.myPuzzle.dict[parseInt(dragId.split("_")[2]-1)] = true;
                         if(CheckVictory(myGame.myPuzzle.dict)){
                             if(myGame.type == "normal"){
-                                myScrore = new Score(myGame.type, myGame.difficulty, $("#Crono").text(), myGame.player);
-                                NormalScores.push(myScrore);   
+                                $("#scoreTimeFinal").val($("#Crono").text())
+                                GameWinned();
+//                                myScrore = new Score(myGame.type, myGame.difficulty, $("#Crono").text(), myGame.player);
+//                                NormalScores.push(myScrore);   
                             }else{
                                 var finalTime = myGame.myPuzzle.initailTime - ((60 * parseInt(myGame.myPuzzle.min)) + parseInt(myGame.myPuzzle.sec));
-
-                                myScrore = new Score(myGame.type, myGame.difficulty, finalTime + " sec" , myGame.player);
-                                TimedScores.push(myScrore);
+                                $("#scoreTimeFinal").val(myGame.myPuzzle.initailTime - ((60 * parseInt(myGame.myPuzzle.min)) + parseInt(myGame.myPuzzle.sec)));
+                                GameWinned();
+//                                myScrore = new Score(myGame.type, myGame.difficulty, finalTime + " sec" , myGame.player);
+//                                TimedScores.push(myScrore);
                             }
                             timeover(myGame);
                             AddScore(NormalScores, TimedScores);
-                            ShowGameOver();
                         }
+                        
+                        
                     }else if(dropId != dragId){
                         myGame.myPuzzle.dict[parseInt(dragId.split("_")[2]-1)] = false;
                     }
