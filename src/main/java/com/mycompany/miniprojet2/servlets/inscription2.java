@@ -111,7 +111,11 @@ public class inscription2 extends HttpServlet {
         String identifiant = request.getParameter("new_user_data_identifiant");
         String email = request.getParameter("new_user_data_email"); 
         String mdp1 = request.getParameter("new_user_data_password");
-        String mdp2 = request.getParameter("new_user_data_password2");  
+        String mdp2 = request.getParameter("new_user_data_password2"); 
+        String nom = request.getParameter("new_user_data_nom");
+        String prenom = request.getParameter("new_user_data_prenom");
+        
+        if (!identifiant.isEmpty() && !email.isEmpty() && !mdp1.isEmpty() && !nom.isEmpty() && !prenom.isEmpty()){
         
          if (mdp1.equals(mdp2)){
               
@@ -133,7 +137,15 @@ public class inscription2 extends HttpServlet {
        else{
            request.setAttribute("erreur6", "true");
            this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
-        }  
+        } 
+         } 
+         
+         else{
+           request.setAttribute("erreur", "true");
+           this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
+        } 
+         
+         
       }        
   }
     /**

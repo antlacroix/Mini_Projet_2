@@ -114,6 +114,8 @@ public class profile extends HttpServlet {
         session.setAttribute("prenom", prenom);
         session.setAttribute("ddn", ddn); 
        
+        if (!mdp.isEmpty() && !nom.isEmpty() && !prenom.isEmpty()){
+        
         if (mdp.equals(mdp2)){
         
         UserDao userDao = new UserDao();
@@ -129,6 +131,13 @@ public class profile extends HttpServlet {
            request.setAttribute("erreur6", "true");
            this.getServletContext().getRequestDispatcher("/Views/profile.jsp").forward(request, response);
         }
+        
+        } 
+         
+         else{
+           request.setAttribute("erreur", "true");
+           this.getServletContext().getRequestDispatcher("/Views/profile.jsp").forward(request, response);
+        } 
        
 
       }      
