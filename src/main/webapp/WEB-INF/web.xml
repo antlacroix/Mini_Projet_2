@@ -62,6 +62,8 @@
     <servlet-mapping>
         <servlet-name>addScore</servlet-name>
         <url-pattern>/addScore</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>profile</servlet-name>
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
