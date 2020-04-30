@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -115,8 +117,14 @@ public class inscription2 extends HttpServlet {
         String nom = request.getParameter("new_user_data_nom");
         String prenom = request.getParameter("new_user_data_prenom");
         
-        if (!identifiant.isEmpty() && !email.isEmpty() && !mdp1.isEmpty() && !nom.isEmpty() && !prenom.isEmpty()){
+       
         
+
+          Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
+          Matcher m = p.matcher(email);
+          boolean matchFound = m.matches();
+          if (matchFound && !identifiant.isEmpty() && !email.isEmpty() && !mdp1.isEmpty() && !nom.isEmpty() && !prenom.isEmpty()) {
+                
          if (mdp1.equals(mdp2)){
               
         UserDto userDto2 = null;
