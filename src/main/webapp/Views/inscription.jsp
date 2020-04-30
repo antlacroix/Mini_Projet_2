@@ -8,6 +8,8 @@
     <jsp:param name="title" value="inscription"/>
 </jsp:include>
 
+
+
 <div id="container" class="d-flex align-items-center justify-content-center">
     <div class="card" id="connect">
         <div class="card-body">
@@ -18,7 +20,7 @@
                         <label>Nom :</label>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" name="new_user_data_nom" placeholder="">
+                        <input id="name" type="text" class="form-control" name="new_user_data_nom" placeholder="">
                     </div>
                 </div>
                  <div class="form-group row">
@@ -26,7 +28,7 @@
                         <label>Prénom :</label>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" name="new_user_data_prenom" placeholder="">
+                        <input id="firstname" type="text" class="form-control" name="new_user_data_prenom" placeholder="">
                     </div>
                 </div>
                  <div class="form-group row">
@@ -42,10 +44,10 @@
                         <label>Identifiant :</label>
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" name="new_user_data_identifiant" placeholder="<%= session.getAttribute("identifiant")%>">
+                      <output id="reslt" type="text" class="form-control" name="new_user_data_identifiant">
                       </div>
                       <div>
-                      <button class="btn btn-primary" type="sumit" value="generated" name="Generate"><i class="fa fa-undo"></i></button>
+                      <button class="btn btn-primary" type="button" id="generate_id"><i class="fa fa-undo"></i></button>
                     </div>
                 </div>
                  <div class="form-group row">
@@ -117,4 +119,6 @@
     </div>
 </div>
 
+        
+            
 <%@ include file="footer.jsp"%>

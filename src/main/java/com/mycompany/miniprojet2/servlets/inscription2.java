@@ -9,6 +9,7 @@ import com.mycompany.miniprojet2.dao.UserDao;
 import com.mycompany.miniprojet2.dto.UserDto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -108,7 +109,7 @@ public class inscription2 extends HttpServlet {
                 session.setAttribute("erreur1", "false");
                 }
             else{
-        
+         
         
         String identifiant = request.getParameter("new_user_data_identifiant");
         String email = request.getParameter("new_user_data_email"); 
@@ -116,20 +117,24 @@ public class inscription2 extends HttpServlet {
         String mdp2 = request.getParameter("new_user_data_password2"); 
         String nom = request.getParameter("new_user_data_nom");
         String prenom = request.getParameter("new_user_data_prenom");
+         
         
-       
-        
-
+       out.println("test1");  
           Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
+          out.println(p);  
           Matcher m = p.matcher(email);
+          out.println(m);  
           boolean matchFound = m.matches();
+          out.println(matchFound);  
+         
           if (matchFound && !identifiant.isEmpty() && !email.isEmpty() && !mdp1.isEmpty() && !nom.isEmpty() && !prenom.isEmpty()) {
-                
+             
          if (mdp1.equals(mdp2)){
-              
+           
         UserDto userDto2 = null;
         UserDao userDao = new UserDao();        
-            
+                    
+
       try {
             userDto2 = userDao.ValidateUser(identifiant, email);
             if(userDto2!= null){
@@ -141,19 +146,16 @@ public class inscription2 extends HttpServlet {
         } 
            this.getServletContext().getRequestDispatcher("/inscription").forward(request, response);
           }  
-             
        else{
            request.setAttribute("erreur6", "true");
            this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
         } 
          } 
-         
+          
          else{
            request.setAttribute("erreur", "true");
            this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
-        } 
-         
-         
+        }   
       }        
   }
     /**

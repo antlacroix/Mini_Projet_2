@@ -147,6 +147,10 @@ function GameWinned(){
 //fonctions utile
 
 //************************************************************************************
+
+
+
+
 //fonction pour "padder les chiffre"
 function pad(n, width, z) {
     z = z || '0';
@@ -441,4 +445,17 @@ $(document).ready(function(){
     $("#timedOut_Reset").on("click", function(){
         ResetGame(myGame, tempGame)
     })
-})
+    
+    function generate() {
+        var lastname = $("#name").val();
+        var firstname = $("#firstname").val();
+        var identifiant = lastname.charAt(0) + lastname.charAt(1) + firstname.charAt(0)
+        + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10);
+        
+        $("#reslt").val(identifiant);
+      }
+      
+     $("#generate_id").on("click", function(){
+        generate()
+    })     
+});

@@ -89,23 +89,7 @@ public class UserDao {
             }
         }
     }
-     
-     
-    
-   
-    public String GetIdentifiant(String prenom, String nom){
-        Random rand = new Random();
-        return "" + nom.charAt(0) + nom.charAt(1) + prenom.charAt(0) + rand.nextInt(10) + rand.nextInt(10) + rand.nextInt(10);
-    }
-     
-         
-
-     
-     
-     
-     
-     
-     
+       
      
      
      
