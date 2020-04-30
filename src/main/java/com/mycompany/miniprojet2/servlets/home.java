@@ -59,10 +59,12 @@ public class home extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+        
+        //Fonction Bouton s'inscrire
             String bouttonInscrire = request.getParameter("Inscrire");
             HttpSession session=request.getSession();
             session.setAttribute("inscrit",bouttonInscrire);
-       
+       //Bouton s'inscrire sinon Connecter
             if(session.getAttribute("inscrit") != null)
                 response.sendRedirect(request.getContextPath() + "/Views/inscription.jsp");
             else
@@ -82,10 +84,12 @@ public class home extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+        
+         //Fonction Bouton s'inscrire
             String bouttonInscrire = request.getParameter("Inscrire");
             HttpSession session=request.getSession();
             session.setAttribute("inscrit",bouttonInscrire);
-       
+       //Bouton s'inscrire sinon Connecter
             if(session.getAttribute("inscrit") != null)
                 response.sendRedirect(request.getContextPath() + "/Views/inscription.jsp");
             else

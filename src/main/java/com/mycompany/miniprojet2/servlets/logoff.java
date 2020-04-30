@@ -59,6 +59,7 @@ public class logoff extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+        //logoff et renvoie a la page acceuil
          HttpSession session = request.getSession();
          session.setAttribute("identifiant", null); 
          this.getServletContext().getRequestDispatcher("/Views/home.jsp").forward(request, response);
@@ -77,6 +78,7 @@ public class logoff extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+        //logoff et renvoie a la page acceuil
         HttpSession session = request.getSession();
          session.setAttribute("identifiant", null); 
          this.getServletContext().getRequestDispatcher("/Views/home.jsp").forward(request, response);

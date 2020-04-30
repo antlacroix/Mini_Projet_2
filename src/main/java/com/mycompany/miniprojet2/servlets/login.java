@@ -67,17 +67,20 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
        // processRequest(request, response);
        
+       
+       //Bouton retour 
             HttpSession session = request.getSession();
-        
             String bouttonRetour = request.getParameter("Retour");
             session.setAttribute("back",bouttonRetour);
        
+            //Bouton retour et logoff si necessaire
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
                 session.setAttribute("back", null); 
                 }
             else{
+                //page login si pas connecter sinon page jeu
                 if(session.getAttribute("identifiant") == null)
                     response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
                 else
@@ -98,32 +101,37 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
        // processRequest(request, response);
        
+       //Bouton retour
         HttpSession session = request.getSession();
         String bouttonRetour = request.getParameter("Retour");
             session.setAttribute("back",bouttonRetour);
-       
+       //Bouton retour et logoff si necessaire
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
                 session.setAttribute("back", null); 
                 }
+            
+            //Bouton valider
             else{
        
        
        
-       
+       //recupere les infos de la page
         String login = request.getParameter("data_login");
         String password = request.getParameter("data_password");        
         
         UserDto userDto = null;
         UserDao userDao = new UserDao();        
         
+        //verifie la base de donnee
         try {
             userDto = userDao.GetUser(login, password);
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        //si se log recupere ses infos et renvoie a la page jeu
         if(userDto != null){
             response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
     
@@ -134,6 +142,7 @@ public class login extends HttpServlet {
             session.setAttribute("email", userDto.getEmail()); 
         }
         else{
+            //sinon pas valide rreset page login et message erreur
             request.setAttribute("erreur", "true");
             this.getServletContext().getRequestDispatcher("/Views/login.jsp").forward(request, response);
         }

@@ -65,16 +65,17 @@ public class inscription extends HttpServlet {
        
       
          HttpSession session = request.getSession();
-        
+        //Bouton retour 
             String bouttonRetour = request.getParameter("Retour");
             session.setAttribute("back",bouttonRetour);
-       
+       //Bouton retour 
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
                 session.setAttribute("back", null); 
                 }
             else{
+                //page login si pas connecter sinon page jeu
                 if(session.getAttribute("identifiant") == null)
                     response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
                 else
@@ -95,10 +96,12 @@ public class inscription extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+        
+         //Bouton retour
         HttpSession session = request.getSession();
         String bouttonRetour = request.getParameter("Retour");
             session.setAttribute("back",bouttonRetour);
-       
+       //Bouton retour 
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
@@ -107,6 +110,8 @@ public class inscription extends HttpServlet {
                 }
             else{
         
+                   //bouton valider
+        //recupere les nouvelles infos
         
         session.setAttribute("erreur1", "false");
  
@@ -116,7 +121,8 @@ public class inscription extends HttpServlet {
         String identifiant = request.getParameter("new_user_data_identifiant");
         String email = request.getParameter("new_user_data_email");
         String mdp = request.getParameter("new_user_data_password");
-     
+  
+        //set les infos
         session.setAttribute("nom", nom);
         session.setAttribute("prenom", prenom);
         session.setAttribute("ddn", ddn); 
@@ -124,7 +130,7 @@ public class inscription extends HttpServlet {
         session.setAttribute("email", email); 
         
         UserDao userDao = new UserDao();        
-        
+        //enregistre nouvelle user
         try {
             userDao.CreateUser(nom, prenom, ddn, identifiant, email, mdp);
         } catch (SQLException ex) {

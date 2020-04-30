@@ -451,8 +451,9 @@ $(document).ready(function(){
         var firstname = $("#firstname").val();
         var identifiant = lastname.charAt(0) + lastname.charAt(1) + firstname.charAt(0)
         + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10);
-        
+       
         $("#reslt").val(identifiant);
+        $("#new_id").val(identifiant);
       }
       
      $("#generate_id").on("click", function(){

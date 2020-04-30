@@ -10,17 +10,27 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+//requete SQL
 public class UserDao {
+    //verifie le login avec user et password
     private static String SQL_GetUser = "SELECT * FROM users WHERE identifiant=? AND mdp=?";
+    //mise a jour de l'user
     private static String SQL_UpdateUser = "UPDATE users SET nom=?, prenom=?, ddn=?, mdp=? WHERE identifiant=?";
+    //create new user
     private static String SQL_CreateUser = "INSERT INTO users(nom, prenom, ddn, identifiant, email, mdp) VALUES(?, ?, ?, ?, ?, ?)";
+    //verifier sil l'identifiant et ou l'email existe dans la base de donnée
     private static String SQL_Validate = "SELECT * FROM users Where identifiant=? || email=?";
      
+    
+    //connection a la base de donnee
     private Db_Connect db_connect;
     private Connection connection;
     private PreparedStatement ps;
     private ResultSet rs;
     
+    
+    //class user
      public UserDao(){
         this.db_connect = new Db_Connect();
         this.connection = null;
@@ -28,8 +38,11 @@ public class UserDao {
         this.ps = null;
     } 
      
+     
+      //verifie le login avec user et password
      public UserDto GetUser(String identifiant, String mdp) throws SQLException{
         
+         
         try{
             this.connection = this.db_connect.OpenConnect();
             this.ps = this.connection.prepareStatement(this.SQL_GetUser);
@@ -39,6 +52,7 @@ public class UserDao {
             
             UserDto user = new UserDto();
             
+            //si l'user existe, recupere tout ses infos
             if(this.rs != null){
                 while(this.rs.next()){   
 
@@ -62,10 +76,13 @@ public class UserDao {
                 Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
         return null;  
     }
      
+     
+     
+     
+     //mise a jour de l'user
      public void UpdateUser(String identifiant, String nom, String prenom, String ddn, String mdp) throws SQLException{
 
         try{
@@ -92,7 +109,7 @@ public class UserDao {
        
      
      
-     
+      //create new user
     public void CreateUser(String nom, String prenom, String ddn, String identifiant, String email, String mdp) throws SQLException{
         
         try{
@@ -117,7 +134,7 @@ public class UserDao {
         }
     }
     
-    
+    //verifier sil l'identifiant et ou l'email existe dans la base de donnée et creer un objet contenant la liste
     public UserDto ValidateUser(String identifiant, String email) throws SQLException{
         
         try{
@@ -128,7 +145,7 @@ public class UserDao {
             this.rs = this.ps.executeQuery();
             
             UserDto user = new UserDto();
-            
+            //recupere tout les infos d
             if(this.rs != null){
                 while(this.rs.next()){   
 

@@ -67,17 +67,20 @@ public class inscription2 extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+        
+        //Bouton retour 
          HttpSession session = request.getSession();
         
             String bouttonRetour = request.getParameter("Retour");
             session.setAttribute("back",bouttonRetour);
-       
+       //Bouton retour 
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
                 session.setAttribute("back", null); 
                 }
             else{
+                 //page login si pas connecter sinon page jeu
                 if(session.getAttribute("identifiant") == null)
                     response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
                 else
@@ -98,10 +101,12 @@ public class inscription2 extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+        
+         //Bouton retour
         HttpSession session = request.getSession();
         String bouttonRetour = request.getParameter("Retour");
             session.setAttribute("back",bouttonRetour);
-       
+       //Bouton retour 
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
@@ -110,34 +115,32 @@ public class inscription2 extends HttpServlet {
                 }
             else{
          
-        
+                //bouton valider
+        //recupere les nouvelles infos pour validation
         String identifiant = request.getParameter("new_user_data_identifiant");
         String email = request.getParameter("new_user_data_email"); 
         String mdp1 = request.getParameter("new_user_data_password");
         String mdp2 = request.getParameter("new_user_data_password2"); 
         String nom = request.getParameter("new_user_data_nom");
         String prenom = request.getParameter("new_user_data_prenom");
-         
-        
-       out.println("test1");  
-          Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-          out.println(p);  
-          Matcher m = p.matcher(email);
-          out.println(m);  
-          boolean matchFound = m.matches();
-          out.println(matchFound);  
-         
+  
+         //expression reguliere email
+          Pattern p = Pattern.compile(".+@.+\\.[a-z]+"); 
+          Matcher m = p.matcher(email); 
+          boolean matchFound = m.matches();  
+         //verifie si pas de champs vide
           if (matchFound && !identifiant.isEmpty() && !email.isEmpty() && !mdp1.isEmpty() && !nom.isEmpty() && !prenom.isEmpty()) {
-             
+             //verifie si les mots de passe coresponde
          if (mdp1.equals(mdp2)){
            
         UserDto userDto2 = null;
         UserDao userDao = new UserDao();        
                     
-
+//verifie si identifiant et ou email sont pas deja dans la base de donne
       try {
             userDto2 = userDao.ValidateUser(identifiant, email);
             if(userDto2!= null){
+                //message erreur identifiant et ou email existe
             request.setAttribute("erreur1", "true");
             this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
             }
@@ -147,11 +150,12 @@ public class inscription2 extends HttpServlet {
            this.getServletContext().getRequestDispatcher("/inscription").forward(request, response);
           }  
        else{
+              //message erreur mot de passe pas identitique 
            request.setAttribute("erreur6", "true");
            this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
         } 
          } 
-          
+           //message erreur champs vide
          else{
            request.setAttribute("erreur", "true");
            this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);

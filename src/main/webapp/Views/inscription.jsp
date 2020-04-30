@@ -44,7 +44,7 @@
                         <label>Identifiant :</label>
                     </div>
                     <div class="col">
-                      <output id="reslt" type="text" class="form-control" name="new_user_data_identifiant">
+                        <input id="reslt" type="text" class="form-control" name="new_user_data_identifiant" disabled>
                       </div>
                       <div>
                       <button class="btn btn-primary" type="button" id="generate_id"><i class="fa fa-undo"></i></button>
@@ -77,6 +77,10 @@
                 <div>
                     <button class="btn btn-danger" type="submit" value="back" name="Retour"><i class="fa fa-backward"></i> Retour</button>
                     <button class="btn btn-success float-right" type="submit"><i class="fa fa-check"></i> Valider</button>
+                </div>
+                
+                 <div class="d-none">
+                  <input id="new_id" type="text" name="new_user_data_identifiant">
                 </div>
             </form> <br>
             
@@ -119,6 +123,7 @@
     </div>
 </div>
 
+        
         
             
 <%@ include file="footer.jsp"%>
