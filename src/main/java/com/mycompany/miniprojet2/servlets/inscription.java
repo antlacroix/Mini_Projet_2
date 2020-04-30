@@ -62,6 +62,7 @@ public class inscription extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
       //  processRequest(request, response);
+       
       
          HttpSession session = request.getSession();
         
@@ -71,6 +72,7 @@ public class inscription extends HttpServlet {
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+                session.setAttribute("back", null); 
                 }
             else{
                 if(session.getAttribute("identifiant") == null)
@@ -100,11 +102,13 @@ public class inscription extends HttpServlet {
             if(session.getAttribute("back") != null){
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+                session.setAttribute("back", null); 
+                session.setAttribute("erreur1", "false");
                 }
             else{
         
         
-        
+        session.setAttribute("erreur1", "false");
  
         String nom = request.getParameter("new_user_data_nom");
         String prenom = request.getParameter("new_user_data_prenom");
@@ -112,7 +116,7 @@ public class inscription extends HttpServlet {
         String identifiant = request.getParameter("new_user_data_identifiant");
         String email = request.getParameter("new_user_data_email");
         String mdp = request.getParameter("new_user_data_password");
-
+     
         session.setAttribute("nom", nom);
         session.setAttribute("prenom", prenom);
         session.setAttribute("ddn", ddn); 
@@ -126,10 +130,7 @@ public class inscription extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }    
-        
-        
-        request.setAttribute("erreur", "true");
-        this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/Views/jeu.jsp").forward(request, response);
         }
     }
 

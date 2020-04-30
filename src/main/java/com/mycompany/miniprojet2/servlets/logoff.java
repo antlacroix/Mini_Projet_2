@@ -5,12 +5,8 @@
  */
 package com.mycompany.miniprojet2.servlets;
 
-import com.mycompany.miniprojet2.dao.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Maison
  */
-public class modifie_profile extends HttpServlet {
+public class logoff extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +36,10 @@ public class modifie_profile extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet modifie_profile</title>");            
+            out.println("<title>Servlet logoff</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet modifie_profile at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet logoff at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,12 +59,9 @@ public class modifie_profile extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-        HttpSession session = request.getSession();
-        
-        if(session.getAttribute("identifiant") == null)
-            response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
-        else
-            response.sendRedirect(request.getContextPath() + "/Views/modifie_profile.jsp");
+         HttpSession session = request.getSession();
+         session.setAttribute("identifiant", null); 
+         this.getServletContext().getRequestDispatcher("/Views/home.jsp").forward(request, response);
     }
 
     /**
@@ -82,26 +75,11 @@ public class modifie_profile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
-       
-        String nom = request.getParameter("new_data_nom");
-        String prenom = request.getParameter("new_data_prenom");
-        String ddn = request.getParameter("new_data_ddn");
-        String password = request.getParameter("new_data_password");
+        //processRequest(request, response);
         
-        
-        UserDao userDao = new UserDao();
-        HttpSession session = request.getSession();  
-        
-        try {
-            userDao.UpdateUser(session.getAttribute("identifiant").toString(), nom, prenom, ddn, password);
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }      
-        
-        request.setAttribute("msg1", "true");
-        this.getServletContext().getRequestDispatcher("/Views/modifie_profile.jsp").forward(request, response);
-       
+        HttpSession session = request.getSession();
+         session.setAttribute("identifiant", null); 
+         this.getServletContext().getRequestDispatcher("/Views/home.jsp").forward(request, response);
     }
 
     /**
