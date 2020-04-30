@@ -38,7 +38,7 @@
                             <a class="nav-link mb-0 h3" href="${pageContext.request.contextPath}/Views/score.jsp">  Score  </a>
                         </li>
                         <li class="nav-item mx-5">
-                            <a class="nav-link mb-0 h3" href="">  Se déconnecter  </a>
+                            <a class="nav-link mb-0 h3" href="${pageContext.request.contextPath}/logoff">  Se déconnecter  </a>
                         </li>
                     </ul>
                 </div>
