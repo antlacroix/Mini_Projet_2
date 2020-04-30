@@ -12,13 +12,13 @@
     <div class="card" id="connect">
         <div class="card-body">
 
-            <form method="POST" action="${pageContext.request.contextPath}/inscription" >
+            <form method="POST" action="${pageContext.request.contextPath}/inscription2">
                 <div class="form-group row">
                     <div class="col">
                         <label>Nom :</label>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" name="new_user_data_nom" placeholder="Entrez votre nom">
+                        <input type="text" class="form-control" name="new_user_data_nom" placeholder="">
                     </div>
                 </div>
                  <div class="form-group row">
@@ -26,7 +26,7 @@
                         <label>Prénom :</label>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" name="new_user_data_prenom" placeholder="Entrez votre prénom">
+                        <input type="text" class="form-control" name="new_user_data_prenom" placeholder="">
                     </div>
                 </div>
                  <div class="form-group row">
@@ -34,7 +34,7 @@
                         <label>Date de naissance :</label>
                     </div>
                     <div class="col">
-                       <input type="date" class="form-control" name="new_user_data_ddn" placeholder="Entrez votre date">
+                       <input type="date" class="form-control" name="new_user_data_ddn" placeholder="">
                     </div>
                 </div>
                  <div class="form-group row">
@@ -42,10 +42,10 @@
                         <label>Identifiant :</label>
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" name="new_user_data_identifiant" placeholder="">
+                      <input type="text" class="form-control" name="new_user_data_identifiant" placeholder="<%= session.getAttribute("identifiant")%>">
                       </div>
                       <div>
-                      <button class="btn btn-primary" type="sumit"><i class="fas fa-undo-alt"></i></button>
+                      <button class="btn btn-primary" type="sumit" value="generated" name="Generate"><i class="fa fa-undo"></i></button>
                     </div>
                 </div>
                  <div class="form-group row">
@@ -53,7 +53,7 @@
                         <label>Adresse email :</label>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" name="new_user_data_email" placeholder="Entrez votre email">
+                        <input type="text" class="form-control" name="new_user_data_email" placeholder="">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -61,7 +61,7 @@
                         <label>Mot de Passe :</label>
                     </div>
                     <div class="col">
-                        <input type="password" class="form-control" name="new_user_data_password" placeholder="Entrez votre mot de passe">
+                        <input type="password" class="form-control" name="new_user_data_password" placeholder="">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -69,12 +69,12 @@
                         <label>Confirmer :</label>
                     </div>
                     <div class="col">
-                        <input type="password" class="form-control" placeholder="Entrez votre mot de passe">
+                        <input type="password" class="form-control" name="new_user_data_password2" placeholder="">
                     </div>
                 </div>
                 <div>
-                    <button class="btn btn-danger" type="submit" value="back" name="Retour"><i class="fa fa-trash fa-lg"></i> Retour</button>
-                    <button class="btn btn-success float-right" type="submit"><i class="fa fa-sign-in fa-lg"></i> Valider</button>
+                    <button class="btn btn-danger" type="submit" value="back" name="Retour"><i class="fa fa-backward"></i> Retour</button>
+                    <button class="btn btn-success float-right" type="submit"><i class="fa fa-check"></i> Valider</button>
                 </div>
             </form> <br>
             
@@ -88,6 +88,26 @@
                 </div>         
             
             <% } %>      
+            
+             <% if(request.getAttribute("erreur1") == "true"){ %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <b>Erreur :</b> L'identifiant existe et/ou l'email
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>         
+            <% } %>   
+            <% if(request.getAttribute("erreur6") == "true"){ %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <b>Erreur :</b> Les mot de passe de coresponde pas  
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>         
+            <% } %> 
+            
+            
+            
             
             <% 
                 if(session.getAttribute("identifiant") != null)

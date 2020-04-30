@@ -6,6 +6,7 @@
 package com.mycompany.miniprojet2.servlets;
 
 import com.mycompany.miniprojet2.dao.UserDao;
+import com.mycompany.miniprojet2.dto.UserDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Maison
  */
-public class profile extends HttpServlet {
+public class inscription2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +41,10 @@ public class profile extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet profile</title>");            
+            out.println("<title>Servlet inscription2</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet profile at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet inscription2 at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,21 +62,22 @@ public class profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
+        //processRequest(request, response);
         
-        HttpSession session = request.getSession();
+         HttpSession session = request.getSession();
         
-        String bouttonRetour = request.getParameter("Retour");
-        session.setAttribute("back",bouttonRetour);
+            String bouttonRetour = request.getParameter("Retour");
+            session.setAttribute("back",bouttonRetour);
        
             if(session.getAttribute("back") != null){
-                response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
+                session.setAttribute("identifiant", null); 
+                response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
                 session.setAttribute("back", null); 
                 }
             else{
-//                if(session.getAttribute("identifiant") == null)
-//                    response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
-//                else
+                if(session.getAttribute("identifiant") == null)
+                    response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
+                else
                     response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
                 }
     }
@@ -91,54 +93,49 @@ public class profile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
+        //processRequest(request, response);
         
         HttpSession session = request.getSession();
-       
-            String bouttonRetour2 = request.getParameter("Retour");
-            session.setAttribute("back",bouttonRetour2);
+        String bouttonRetour = request.getParameter("Retour");
+            session.setAttribute("back",bouttonRetour);
        
             if(session.getAttribute("back") != null){
-                response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
-                session.setAttribute("back", null);
+                session.setAttribute("identifiant", null); 
+                response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+                session.setAttribute("back", null); 
+                session.setAttribute("erreur1", "false");
                 }
             else{
-       
-        String nom = request.getParameter("new_data_nom");
-        String prenom = request.getParameter("new_data_prenom");
-        String ddn = request.getParameter("new_data_ddn");
-        String mdp = request.getParameter("new_data_password");
-        String mdp2 = request.getParameter("new_data_password2");  
         
-        session.setAttribute("nom", nom);
-        session.setAttribute("prenom", prenom);
-        session.setAttribute("ddn", ddn); 
-       
-        if (mdp.equals(mdp2)){
         
-        UserDao userDao = new UserDao();
+        String identifiant = request.getParameter("new_user_data_identifiant");
+        String email = request.getParameter("new_user_data_email"); 
+        String mdp1 = request.getParameter("new_user_data_password");
+        String mdp2 = request.getParameter("new_user_data_password2");  
         
-        try {
-            userDao.UpdateUser(session.getAttribute("identifiant").toString(), nom, prenom, ddn, mdp);
+         if (mdp1.equals(mdp2)){
+              
+        UserDto userDto2 = null;
+        UserDao userDao = new UserDao();        
+            
+      try {
+            userDto2 = userDao.ValidateUser(identifiant, email);
+            if(userDto2!= null){
+            request.setAttribute("erreur1", "true");
+            this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        this.getServletContext().getRequestDispatcher("/Views/jeu.jsp").forward(request, response);
-    }   
+           this.getServletContext().getRequestDispatcher("/inscription").forward(request, response);
+          }  
+             
        else{
            request.setAttribute("erreur6", "true");
-           this.getServletContext().getRequestDispatcher("/Views/profile.jsp").forward(request, response);
-        }
-       
-
-      }      
-            
-    }
-
-    
-    
-    
-    
+           this.getServletContext().getRequestDispatcher("/Views/inscription.jsp").forward(request, response);
+        }  
+      }        
+  }
     /**
      * Returns a short description of the servlet.
      *

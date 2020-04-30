@@ -16,7 +16,7 @@
             <form method="POST" action="${pageContext.request.contextPath}/home" >
                 <div>
                     <button class="btn btn-success" type="submit"><i class="fa fa-sign-in fa-lg"></i> Se Connecter</button>
-                    <button class="btn btn-danger" value="inscriT" type="submit" name="Inscrire"><i class="fa fa-trash fa-lg"></i> S'incrire</button>
+                    <button class="btn btn-danger" value="inscriT" type="submit" name="Inscrire"><i class="fa fa-plus"></i> S'incrire</button>
                 </div>
             </form>     
         </div>

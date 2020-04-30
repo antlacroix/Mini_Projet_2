@@ -58,7 +58,7 @@
                         <label>Mot de Passe :</label>
                     </div>
                     <div class="col">
-                        <input type="password" class="form-control" name="new_data_password" placeholder="mot de passe">
+                        <input type="password" class="form-control" name="new_data_password" placeholder="">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -66,12 +66,12 @@
                         <label>Confirmer :</label>
                     </div>
                     <div class="col">
-                        <input type="password" class="form-control" placeholder="mot de passe">
+                        <input type="password" class="form-control" name="new_data_password2" placeholder="">
                     </div>
                 </div>
                 <div>
-                    <button class="btn btn-danger" type="submit" value="back" name="Retour"><i class="fa fa-trash fa-lg"></i> Retour</button>
-                    <button class="btn btn-success float-right" type="submit"><i class="fa fa-sign-in fa-lg"></i> Enregistrer</button>
+                    <button class="btn btn-danger" type="submit" value="back" name="Retour"><i class="fa fa-backward"></i> Retour</button>
+                    <button class="btn btn-success float-right" type="submit"><i class="fa fa-save"></i> Enregistrer</button>
                 </div>
             </form> <br>
             
@@ -84,7 +84,15 @@
                     </button>
                 </div>         
             
-            <% } %>              
+            <% } %> 
+            <% if(request.getAttribute("erreur6") == "true"){ %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <b>Erreur :</b> Les mot de passe de coresponde pas  
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>         
+            <% } %> 
         </div>
     </div>
 </div>

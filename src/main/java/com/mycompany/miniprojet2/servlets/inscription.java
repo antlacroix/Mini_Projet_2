@@ -62,6 +62,7 @@ public class inscription extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
       //  processRequest(request, response);
+       
       
          HttpSession session = request.getSession();
         
@@ -102,11 +103,12 @@ public class inscription extends HttpServlet {
                 session.setAttribute("identifiant", null); 
                 response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
                 session.setAttribute("back", null); 
+                session.setAttribute("erreur1", "false");
                 }
             else{
         
         
-        
+        session.setAttribute("erreur1", "false");
  
         String nom = request.getParameter("new_user_data_nom");
         String prenom = request.getParameter("new_user_data_prenom");
@@ -114,7 +116,7 @@ public class inscription extends HttpServlet {
         String identifiant = request.getParameter("new_user_data_identifiant");
         String email = request.getParameter("new_user_data_email");
         String mdp = request.getParameter("new_user_data_password");
-
+     
         session.setAttribute("nom", nom);
         session.setAttribute("prenom", prenom);
         session.setAttribute("ddn", ddn); 
