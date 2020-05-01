@@ -13,10 +13,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ScoreNormalDao {
-    
+    //sellectione les dix meilleur score de la la BD
     private static String SQL_GetScore = "SELECT * FROM scores_normal ORDER BY FIELD(difficulte, 'Difficile','Moyen','Facile'), time_spent LIMIT 10";
+    //Ajoute un nouveau score a la BD
     private static String SQL_NewScore = "INSERT INTO scores_normal (joueur, difficulte, time_spent) VALUES (?, ?, ?);";
     
+    //variable
     private Db_Connect db_connect;
     private Connection connection;
     private PreparedStatement ps;

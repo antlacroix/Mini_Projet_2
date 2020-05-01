@@ -39,8 +39,8 @@ public class UserDao {
     } 
      
      
-      //verifie le login avec user et password
-     public UserDto GetUser(String identifiant, String mdp) throws SQLException{
+    //verifie le login avec user et password
+    public UserDto GetUser(String identifiant, String mdp) throws SQLException{
         
          
         try{
@@ -79,11 +79,8 @@ public class UserDao {
         return null;  
     }
      
-     
-     
-     
-     //mise a jour de l'user
-     public void UpdateUser(String identifiant, String nom, String prenom, String ddn, String mdp) throws SQLException{
+    //mise a jour de l'user
+    public void UpdateUser(String identifiant, String nom, String prenom, String ddn, String mdp) throws SQLException{
 
         try{
             this.connection = this.db_connect.OpenConnect();
@@ -107,9 +104,7 @@ public class UserDao {
         }
     }
        
-     
-     
-      //create new user
+    //create new user
     public void CreateUser(String nom, String prenom, String ddn, String identifiant, String email, String mdp) throws SQLException{
         
         try{
@@ -172,12 +167,7 @@ public class UserDao {
         
         return null;  
     }
-    
-    
-    
-    
-    
-    
+ 
 }
 
 

@@ -27,11 +27,9 @@ public class ScoreVstimeDto {
     public void setDifficulte(String difficulte) {
         this.difficulte = difficulte;
     }
-
     public void setTemp_init(String temp_init) {
         this.temp_init = temp_init;
     }
-
     public void setTemp_fin(String temp_fin) {
         this.temp_fin = temp_fin;
     }
@@ -53,11 +51,9 @@ public class ScoreVstimeDto {
     public String getDifficulte() {
         return difficulte;
     }
-
     public String getTemp_init() {
         return temp_init;
     }
-
     public String getTemp_fin() {
         return temp_fin;
     }

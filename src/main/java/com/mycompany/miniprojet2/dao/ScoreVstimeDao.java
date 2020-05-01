@@ -13,15 +13,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ScoreVstimeDao {
+    //sellectione les dix meilleur score de la la BD
     private static String SQL_GetScore = "SELECT * FROM scores_vstime ORDER BY FIELD(difficulte, 'Difficile','Moyen','Facile'), initial_time LIMIT 10";
+    //Ajoute un nouveau score a la BD
     private static String SQL_NewScore = "INSERT INTO scores_vstime (joueur, difficulte, initial_time, finale_time) VALUES (?, ?, ?, ?);";
     
+    //variable de connection
     private Db_Connect db_connect;
     private Connection connection;
     private PreparedStatement ps;
     private ResultSet rs;
     private List<ScoreVstimeDto> scores;
     
+    //constructeur
     public ScoreVstimeDao(){
         this.db_connect = new Db_Connect();
         this.connection = null;
