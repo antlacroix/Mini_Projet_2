@@ -3,9 +3,7 @@
     <jsp:param name="title" value="Jeu"/>
 </jsp:include>
 
-
-
-
+ 
     <!--ecran de nouvel partie-->
     <div id="cc1" class="cardcontainer">
         <div id="Acceuil" class="card">
@@ -18,18 +16,18 @@
             </h5>
             <br/>
             <form>
-              <div class="col d-flex justify-content-between">
-                <label>Joueur :</label>
-                <label id="playerName" class="mb-0 h3" value="<%= session.getAttribute("identifiant")%>"><%= session.getAttribute("identifiant")%></label>
+                <div class="col d-flex justify-content-between">
+                    <label>Joueur :</label>
+                    <label id="playerName" class="mb-0 h3" value="<%= session.getAttribute("identifiant")%>"><%= session.getAttribute("identifiant")%></label>
                 </div>
                 <br/>
                 <div class="col d-flex justify-content-between">
-                <label>Difficulté :</label>
-                <select id="difficulte" style="width: 150px">
-                  <option value="Facile">Facile</option>
-                  <option value="Moyen">Moyen</option>
-                  <option value="Difficile">Difficile</option>
-                </select>
+                    <label>Difficulté :</label>
+                    <select id="difficulte" style="width: 150px">
+                        <option value="Facile">Facile</option>
+                        <option value="Moyen">Moyen</option>
+                        <option value="Difficile">Difficile</option>
+                    </select>
                 </div>
                 <br/>
                 <div class="leftMargin">
@@ -37,30 +35,32 @@
                     <label for="vstime">Contre la montre</label>
                 </div>
 
-              <div id="timeOption" class="leftMargin">
-                <label>Minutes :</label>
-                <div class="d-inline">
-                  <label id="minute" style="width: 30px">1</label>
-                  <button id="minP" type="button">+</button>
-                  <button id="minM" type="button">-</button>
+                <div id="timeOption" class="leftMargin">
+                    <label>Minutes :</label>
+                    <div class="d-inline">
+                        <label id="minute" style="width: 30px">1</label>
+                        <button id="minP" type="button">+</button>
+                        <button id="minM" type="button">-</button>
+                    </div>
+                    <label class="leftMargin">Secondes :</label>
+                    <div class="d-inline">
+                        <label id="seconde" style="width: 30px">0</label>
+                        <button id="secP"  type="button">+</button>
+                        <button id="secM"  type="button">-</button>
+                    </div>
                 </div>
-                <label class="leftMargin">Secondes :</label>
-                <div class="d-inline">
-                  <label id="seconde" style="width: 30px">0</label>
-                  <button id="secP"  type="button">+</button>
-                  <button id="secM"  type="button">-</button>
+                <div class="col d-flex justify-content-between">
+                    <div class="col ">
+                        <div style='display: none;'>
+                            <button class="btn btn-danger myButton" type="reset" style="width: 8em">Réinitialiser</button>
+                    </div>
+                    </div>
+                    <div class="col">
+                        <button id="btn_np_start" type="button" class="btn btn-success myButton" style="width: 8em">Commencer</button>
+                    </div>
                 </div>
-              </div>
-              <div class="col d-flex justify-content-between">
-                <div class="col">
-                  <button class="btn btn-danger myButton" type="reset" style="width: 8em">Réinitialiser</button>
-                </div>
-                <div class="col">
-                  <button id="btn_np_start" type="button" class="btn btn-success myButton" style="width: 8em">Commencer</button>
-                </div>
-              </div>
-              <br/>
-          </form>
+                <br/>
+            </form>
         </div>
     </div>
 
@@ -69,19 +69,17 @@
         <div id="Jeux" class="card">
             <div class="card-header">
                 <h5 style="display: inline;" id="titlePlayerName"></h5>
-                <p id="Crono" class="display"></p>
-                
+                <p id="Crono" class="display"></p> 
             </div>
             <br />
             <div id="gameTable" class="col d-flex justify-content-between">
                 <div id="tableL" class="d-flex flex-column" border="3" width="50%"></div>
                 <div id="tableR" class="d-flex flex-column bigDroppable" border="3" width="50%"></div>
-
             </div>
             <br />
             <form class="leftMargin" method="POST" action="${pageContext.request.contextPath}/forfeit">
                 <button id="btn_jeu_stop" class="btn btn-danger myButton" type="submit" style="width: 8em">Abondonner</button>
-            </div>
+            </form>
             <br />
         </div>
     </div>
@@ -94,14 +92,13 @@
             </div>
             <form method="POST" action="${pageContext.request.contextPath}/forfeit">
                 <div>
-                  <button id="timedOut_Menu" class="btn btn-danger myButton" type="submit" style="width: 8em">Abandonner</button>
+                    <button id="timedOut_Menu" class="btn btn-danger myButton" type="submit" style="width: 8em">Abandonner</button>
                 </div>
                 <div>
-                  <button id="timedOut_Reset" class="btn btn-success myButton" type="button" style="width: 8em">Rejouer</button>
+                    <button id="timedOut_Reset" class="btn btn-success myButton" type="button" style="width: 8em">Rejouer</button>
                 </div>
             </form>
-        </div>
-        
+        </div> 
     </div>
     
                 
@@ -115,7 +112,7 @@
             </div>
             <form method="POST" action="${pageContext.request.contextPath}/addScore">
                 <div>
-                  <button id="timedOut_Reset" class="btn btn-success myButton" type="submit" style="width: 8em">Continuer</button>
+                    <button id="timedOut_Reset" class="btn btn-success myButton" type="submit" style="width: 8em">Continuer</button>
                 </div>
                 <div style="display: none;">
                     <input id="scoreType" type="text" class="form-control" name="scoreType">
@@ -128,6 +125,13 @@
         </div>
         
     </div>
+                
+<!-- redirection si le jeu est deja connecté -->
+<% 
+    if(session.getAttribute("identifiant") == null)
+        response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
+%>
+                
     
 <!-- ajoute le footer pour le navigateur -->    
 <%@include file="footer.jsp"%>

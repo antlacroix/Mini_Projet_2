@@ -1,9 +1,4 @@
-<%-- 
-    Document   : modifie_profile
-    Created on : 2020-04-28, 20:25:54
-    Author     : Maison
---%>
-
+<!-- ajoute le header pour le navigateur -->
 <jsp:include page="header.jsp">
     <jsp:param name="title" value="Profil"/>
 </jsp:include>
@@ -75,8 +70,8 @@
                 </div>
             </form> <br>
             
+            <!-- message d'erreur si le formulaire est mal remplie -->
             <% if(request.getAttribute("erreur") == "true"){ %>
-            
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <b>Erreur :</b> 
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -97,4 +92,5 @@
     </div>
 </div>
 
+<!-- ajoute le footer pour le navigateur -->  
 <%@ include file="footer.jsp"%>

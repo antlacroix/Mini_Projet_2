@@ -1,3 +1,4 @@
+<!-- import necessaire pour faire fonctionner l'ajout des scores -->
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mycompany.miniprojet2.dto.ScoreVstimeDto"%>

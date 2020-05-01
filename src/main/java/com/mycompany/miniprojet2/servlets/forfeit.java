@@ -20,23 +20,6 @@ import javax.servlet.http.HttpSession;
 
 public class forfeit extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet forfeit</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet forfeit at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,8 +28,35 @@ public class forfeit extends HttpServlet {
         
         if(session.getAttribute("identifiant") == null)
             response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
-        else
-            response.sendRedirect(request.getContextPath() + "/Views/score.jsp");
+        else{
+            
+        
+            ScoreVstimeDao scoreVstimeDao = new ScoreVstimeDao();
+            ScoreNormalDao scoreNormalDao = new ScoreNormalDao();
+
+            List<ScoreVstimeDto> scoreVstimesList = null;
+            List<ScoreNormalDto> scoreNormalList = null;
+        
+        
+            if(session.getAttribute("identifiant") == null)
+                response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
+            else{
+                try{
+
+                    scoreVstimesList = scoreVstimeDao.GetScore();
+                    scoreNormalList = scoreNormalDao.GetScore();
+
+                } catch (SQLException ex){
+                    Logger.getLogger(forfeit.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(scoreVstimesList != null && scoreNormalList != null){
+                    request.setAttribute("scoreVstime", scoreVstimesList);
+                    request.setAttribute("scoreNormal", scoreNormalList);
+                    this.getServletContext().getRequestDispatcher("/Views/score.jsp").forward(request, response);
+                }
+            }
+        }
+            
     }
 
     @Override
