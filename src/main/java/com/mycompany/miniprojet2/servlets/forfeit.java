@@ -77,7 +77,7 @@ public class forfeit extends HttpServlet {
             List<ScoreNormalDto> scoreNormalList = null;
         
             try{
-
+                out.println("test1");
                 scoreVstimesList = scoreVstimeDao.GetScore();
                 scoreNormalList = scoreNormalDao.GetScore();
 

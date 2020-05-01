@@ -75,7 +75,7 @@ public class addScore extends HttpServlet {
             } catch(SQLException ex) {
                 Logger.getLogger(addScore.class.getName()).log(Level.SEVERE, null, ex);
             } finally{
-                response.sendRedirect(request.getContextPath() + "/Views/score.jsp");
+                response.sendRedirect(request.getContextPath() + "/forfeit");
             }
         }else{
             response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
