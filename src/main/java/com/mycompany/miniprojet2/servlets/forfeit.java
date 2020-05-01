@@ -20,41 +20,40 @@ import javax.servlet.http.HttpSession;
 
 public class forfeit extends HttpServlet {
 
+    //les deux fonction doGet et doPost recupere les scores de la BD
+    //et les passe en argument attribut a la page de score affin
+    //qu'elle puisse les aficher
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
         
+        //verifie si un utilisateur est connecter
         if(session.getAttribute("identifiant") == null)
             response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
         else{
             
-        
+            //creation des objet necessaire
             ScoreVstimeDao scoreVstimeDao = new ScoreVstimeDao();
             ScoreNormalDao scoreNormalDao = new ScoreNormalDao();
-
+            //creation des list qui contiendront les scores
             List<ScoreVstimeDto> scoreVstimesList = null;
             List<ScoreNormalDto> scoreNormalList = null;
         
-        
-            if(session.getAttribute("identifiant") == null)
-                response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
-            else{
-                try{
+            try{
+                scoreVstimesList = scoreVstimeDao.GetScore();
+                scoreNormalList = scoreNormalDao.GetScore();
 
-                    scoreVstimesList = scoreVstimeDao.GetScore();
-                    scoreNormalList = scoreNormalDao.GetScore();
-
-                } catch (SQLException ex){
-                    Logger.getLogger(forfeit.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if(scoreVstimesList != null && scoreNormalList != null){
-                    request.setAttribute("scoreVstime", scoreVstimesList);
-                    request.setAttribute("scoreNormal", scoreNormalList);
-                    this.getServletContext().getRequestDispatcher("/Views/score.jsp").forward(request, response);
-                }
+            } catch (SQLException ex){
+                Logger.getLogger(forfeit.class.getName()).log(Level.SEVERE, null, ex);
             }
+            if(scoreVstimesList != null && scoreNormalList != null){
+                request.setAttribute("scoreVstime", scoreVstimesList);
+                request.setAttribute("scoreNormal", scoreNormalList);
+                this.getServletContext().getRequestDispatcher("/Views/score.jsp").forward(request, response);
+            }
+
         }
             
     }
@@ -65,16 +64,18 @@ public class forfeit extends HttpServlet {
         
         HttpSession session = request.getSession();
         
-        ScoreVstimeDao scoreVstimeDao = new ScoreVstimeDao();
-        ScoreNormalDao scoreNormalDao = new ScoreNormalDao();
-        
-        List<ScoreVstimeDto> scoreVstimesList = null;
-        List<ScoreNormalDto> scoreNormalList = null;
-        
-        
+        //verifie si un utilisateur est connecter
         if(session.getAttribute("identifiant") == null)
             response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
         else{
+        
+            //creation des objet necessaire
+            ScoreVstimeDao scoreVstimeDao = new ScoreVstimeDao();
+            ScoreNormalDao scoreNormalDao = new ScoreNormalDao();
+            //creation des list qui contiendront les scores
+            List<ScoreVstimeDto> scoreVstimesList = null;
+            List<ScoreNormalDto> scoreNormalList = null;
+        
             try{
 
                 scoreVstimesList = scoreVstimeDao.GetScore();

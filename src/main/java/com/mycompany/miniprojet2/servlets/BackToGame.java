@@ -9,24 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class BackToGame extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet BackToGame</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet BackToGame at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
+    //les deux fonction doGet et doPostservent
+    //a rediriger l'utilisateur vers
+    //la page de jeu si il est coonecter ou 
+    //la page de de home si il ne l'est pas
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,7 +20,7 @@ public class BackToGame extends HttpServlet {
         HttpSession session = request.getSession();
         
         if(session.getAttribute("identifiant") == null)
-            response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
         else
             response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
     }
@@ -46,14 +32,8 @@ public class BackToGame extends HttpServlet {
         HttpSession session = request.getSession();
         
         if(session.getAttribute("identifiant") == null)
-            response.sendRedirect(request.getContextPath() + "/Views/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/Views/home.jsp");
         else
             response.sendRedirect(request.getContextPath() + "/Views/jeu.jsp");
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

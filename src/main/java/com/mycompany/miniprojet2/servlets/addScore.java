@@ -21,23 +21,7 @@ import javax.servlet.http.HttpSession;
 
 public class addScore extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet addScore</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet addScore at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
+    //redirige l'utilisateur
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -50,24 +34,18 @@ public class addScore extends HttpServlet {
         }
     }
 
+    //recupere les information necessaire dans des champs caché de
+    //la page de jeu et les utilise afin d'ajouter un score a la BD
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
         
-        out.println(request.getParameter("scoreType"));
-        out.println("normal");
-        out.println(request.getParameter("scoreType").equals("normal"));
-        out.println(request.getParameter("scoreDifficulte"));
-        out.println(request.getParameter("scoreTimeInit"));
-        out.println(request.getParameter("scoreTimeFinal"));
-        
+        //verifie si la partie est de type contre la montre
         if(request.getParameter("scoreType").equals("clocked")){
-            out.println("test2");
             ScoreVstimeDao vstimedao = new ScoreVstimeDao();
             try{
-                out.println("test vstime");
                 vstimedao.CreateScore(
                     (String)session.getAttribute("identifiant"),
                     request.getParameter("scoreDifficulte"),
@@ -76,12 +54,15 @@ public class addScore extends HttpServlet {
                 );  
             } catch(SQLException ex) {
                 Logger.getLogger(addScore.class.getName()).log(Level.SEVERE, null, ex);
-            }   finally{
+            } finally{
                 response.sendRedirect(request.getContextPath() + "/Views/score.jsp");
             }      
+        //verifie si la partie est de type normale
         } else if (request.getParameter("scoreType").equals("normal")){
             
             ScoreNormalDao normaldao = new ScoreNormalDao();
+            //transforme un string format "MM : SS" en int qui corespond
+            //au nombre de seconde total
             String[] a = request.getParameter("scoreTimeFinal").split(" : ");
             int f = Integer.parseInt(a[0]) + Integer.parseInt(a[1]);
             
@@ -101,10 +82,5 @@ public class addScore extends HttpServlet {
         }
 
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }
