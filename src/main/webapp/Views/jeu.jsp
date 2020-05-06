@@ -7,13 +7,14 @@
     <!--ecran de nouvel partie-->
     <div id="cc1" class="cardcontainer">
         <div id="Acceuil" class="card">
-            
-            <h5 class="card-header">
-                <i class="fa fa-book"></i> Nouvelle Partie
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="mt-2">
+                    <i class="fa fa-book"></i> Nouvelle Partie
+                </h5>
                 <form method="POST" action="${pageContext.request.contextPath}/forfeit">
                     <button id=btn_np_score stype="submit" class="btn btn-outline-success my-2 my-sm-0">Score</button>
                 </form>
-            </h5>
+            </div>
             <br/>
             <form>
                 <div class="col d-flex justify-content-between">
